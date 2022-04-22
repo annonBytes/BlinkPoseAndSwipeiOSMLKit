@@ -77,6 +77,7 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
+  - PDFReader (2.5.1)
   - PromisesObjC (1.2.12)
   - Protobuf (3.19.1)
 
@@ -84,6 +85,7 @@ DEPENDENCIES:
   - Firebase/MLVision
   - Firebase/MLVisionFaceModel
   - lottie-ios
+  - PDFReader
 
 SPEC REPOS:
   trunk:
@@ -101,6 +103,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - lottie-ios
     - nanopb
+    - PDFReader
     - PromisesObjC
     - Protobuf
 
@@ -119,9 +122,10 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
+  PDFReader: 2c4a845d0560f33221cf911516e3b700967680f6
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Protobuf: 3724efa50cb2846d7ccebc8691c574e85fd74471
 
-PODFILE CHECKSUM: a77ca32cd737902217f19316ffbe9e80bfc5a3d3
+PODFILE CHECKSUM: cd3c49d8e4a3462a748b29013db851c3cc22da52
 
 COCOAPODS: 1.11.2

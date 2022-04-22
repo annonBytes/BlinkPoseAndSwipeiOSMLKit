@@ -66,7 +66,7 @@ class HeadViewController : UIViewController, PDFViewDelegate, PDFDocumentDelegat
         pdfView.autoScales = true
         
         
-        guard let path = Bundle.main.url(forResource: "TURNING PAGE", withExtension: "pdf") else { return }
+        guard let path = Bundle.main.url(forResource: "Lavalse_d_Amelie", withExtension: "pdf") else { return }
         if let document = PDFDocument(url: path) {
             pdfView.document = document
             document.delegate = self
@@ -93,7 +93,7 @@ class HeadViewController : UIViewController, PDFViewDelegate, PDFDocumentDelegat
    
     
     @objc func doneTapped(){
-        if let url = URL(string: "https://forms.gle/QCb4iyW4WvmRVXTg7") {
+        if let url = URL(string: "https://forms.gle/epUPJfC1kvsiQf9Q8") {
             UIApplication.shared.open(url)
         }
     }

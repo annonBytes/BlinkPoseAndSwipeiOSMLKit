@@ -14,6 +14,12 @@
 		1E03B15323DB7CCF0081F923 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E03B15223DB7CCF0081F923 /* Assets.xcassets */; };
 		1E03B15623DB7CCF0081F923 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E03B15423DB7CCF0081F923 /* LaunchScreen.storyboard */; };
 		1E03B16623DC58B00081F923 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E03B16523DC58B00081F923 /* CameraView.swift */; };
+		6D3BDB7C280DE33B009255EE /* SwipeModality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3BDB7B280DE33B009255EE /* SwipeModality.swift */; };
+		6D3BDB7E280DE3EF009255EE /* SwipeCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3BDB7D280DE3EF009255EE /* SwipeCounter.swift */; };
+		6D3BDB80280DE3FD009255EE /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3BDB7F280DE3FD009255EE /* SwipeViewController.swift */; };
+		6D3BDB82280DE416009255EE /* SwipePracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3BDB81280DE416009255EE /* SwipePracticeViewController.swift */; };
+		6D3BDB84280DE614009255EE /* PracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3BDB83280DE614009255EE /* PracticeViewController.swift */; };
+		6D3BDB8E28109BAA009255EE /* Lavalse_d_Amelie.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6D3BDB8D28109BAA009255EE /* Lavalse_d_Amelie.pdf */; };
 		6DD2ED7C27E15E6C008D29B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DD2ED7B27E15E6B008D29B9 /* GoogleService-Info.plist */; };
 		6DD2EDB427F127DA008D29B9 /* TURNING PAGE.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6DD2EDB327F127D9008D29B9 /* TURNING PAGE.pdf */; };
 		6DD2EDB627F33839008D29B9 /* HeadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD2EDB527F33839008D29B9 /* HeadViewController.swift */; };
@@ -36,6 +42,10 @@
 		6DD2EDEC27F64CF8008D29B9 /* HeadModality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD2EDEB27F64CF8008D29B9 /* HeadModality.swift */; };
 		6DD2EDEE27F64D0C008D29B9 /* HeadPracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD2EDED27F64D0C008D29B9 /* HeadPracticeViewController.swift */; };
 		6DD2EDF027F655DB008D29B9 /* FootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD2EDEF27F655DB008D29B9 /* FootViewController.swift */; };
+		6DD2EDF927FCDFCD008D29B9 /* FootModality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD2EDF827FCDFCD008D29B9 /* FootModality.swift */; };
+		6DD2EDFB27FCE0A8008D29B9 /* FootCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD2EDFA27FCE0A8008D29B9 /* FootCounter.swift */; };
+		6DD2EDFD27FCE6A6008D29B9 /* FootPracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD2EDFC27FCE6A6008D29B9 /* FootPracticeViewController.swift */; };
+		6DD2EE0127FDF359008D29B9 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD2EE0027FDF358008D29B9 /* CoreBluetooth.framework */; };
 		AC16C0DFBAD9C31BEA360085 /* Pods_BlinkPoseAndSwipeiOSMLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C55B0282D96DE85D79BDE2C /* Pods_BlinkPoseAndSwipeiOSMLKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +60,12 @@
 		1E03B15523DB7CCF0081F923 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E03B15723DB7CCF0081F923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E03B16523DC58B00081F923 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		6D3BDB7B280DE33B009255EE /* SwipeModality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeModality.swift; sourceTree = "<group>"; };
+		6D3BDB7D280DE3EF009255EE /* SwipeCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCounter.swift; sourceTree = "<group>"; };
+		6D3BDB7F280DE3FD009255EE /* SwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
+		6D3BDB81280DE416009255EE /* SwipePracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipePracticeViewController.swift; sourceTree = "<group>"; };
+		6D3BDB83280DE614009255EE /* PracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewController.swift; sourceTree = "<group>"; };
+		6D3BDB8D28109BAA009255EE /* Lavalse_d_Amelie.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lavalse_d_Amelie.pdf; path = ../../../../Lavalse_d_Amelie.pdf; sourceTree = "<group>"; };
 		6DD2ED7B27E15E6B008D29B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6DD2EDB327F127D9008D29B9 /* TURNING PAGE.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "TURNING PAGE.pdf"; sourceTree = "<group>"; };
 		6DD2EDB527F33839008D29B9 /* HeadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +88,10 @@
 		6DD2EDEB27F64CF8008D29B9 /* HeadModality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadModality.swift; sourceTree = "<group>"; };
 		6DD2EDED27F64D0C008D29B9 /* HeadPracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadPracticeViewController.swift; sourceTree = "<group>"; };
 		6DD2EDEF27F655DB008D29B9 /* FootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootViewController.swift; sourceTree = "<group>"; };
+		6DD2EDF827FCDFCD008D29B9 /* FootModality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootModality.swift; sourceTree = "<group>"; };
+		6DD2EDFA27FCE0A8008D29B9 /* FootCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootCounter.swift; sourceTree = "<group>"; };
+		6DD2EDFC27FCE6A6008D29B9 /* FootPracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootPracticeViewController.swift; sourceTree = "<group>"; };
+		6DD2EE0027FDF358008D29B9 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		7C55B0282D96DE85D79BDE2C /* Pods_BlinkPoseAndSwipeiOSMLKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlinkPoseAndSwipeiOSMLKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71ED78AF57B70971F4C952F /* Pods-BlinkPoseAndSwipeiOSMLKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlinkPoseAndSwipeiOSMLKit.release.xcconfig"; path = "Target Support Files/Pods-BlinkPoseAndSwipeiOSMLKit/Pods-BlinkPoseAndSwipeiOSMLKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DD2EE0127FDF359008D29B9 /* CoreBluetooth.framework in Frameworks */,
 				AC16C0DFBAD9C31BEA360085 /* Pods_BlinkPoseAndSwipeiOSMLKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,6 +143,7 @@
 				6DD2ED7B27E15E6B008D29B9 /* GoogleService-Info.plist */,
 				1E03B15723DB7CCF0081F923 /* Info.plist */,
 				6DD2EDD827F63D76008D29B9 /* practice.pdf */,
+				6D3BDB8D28109BAA009255EE /* Lavalse_d_Amelie.pdf */,
 				6DD2EDB327F127D9008D29B9 /* TURNING PAGE.pdf */,
 			);
 			path = BlinkPoseAndSwipeiOSMLKit;
@@ -139,9 +161,21 @@
 		49AED5CF2D6CF5492C3B37CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6DD2EE0027FDF358008D29B9 /* CoreBluetooth.framework */,
 				7C55B0282D96DE85D79BDE2C /* Pods_BlinkPoseAndSwipeiOSMLKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6D3BDB7A280DE321009255EE /* Swipe */ = {
+			isa = PBXGroup;
+			children = (
+				6D3BDB7B280DE33B009255EE /* SwipeModality.swift */,
+				6D3BDB7D280DE3EF009255EE /* SwipeCounter.swift */,
+				6D3BDB7F280DE3FD009255EE /* SwipeViewController.swift */,
+				6D3BDB81280DE416009255EE /* SwipePracticeViewController.swift */,
+			);
+			path = Swipe;
 			sourceTree = "<group>";
 		};
 		6DD2EDB727F3B6E9008D29B9 /* Views */ = {
@@ -181,17 +215,19 @@
 		6DD2EDC127F3BABA008D29B9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6D3BDB7A280DE321009255EE /* Swipe */,
+				6DD2EDF727FCDEC6008D29B9 /* Foot */,
 				6DD2EDE627F64CC0008D29B9 /* Head */,
 				6DD2EDDD27F641C0008D29B9 /* Wink */,
-				6DD2EDDA27F640AE008D29B9 /* Swipe */,
+				6DD2EDDA27F640AE008D29B9 /* Tap */,
 				6DD2EDC227F3BAF9008D29B9 /* HomeViewController.swift */,
 				1E03B16523DC58B00081F923 /* CameraView.swift */,
-				6DD2EDEF27F655DB008D29B9 /* FootViewController.swift */,
+				6D3BDB83280DE614009255EE /* PracticeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		6DD2EDDA27F640AE008D29B9 /* Swipe */ = {
+		6DD2EDDA27F640AE008D29B9 /* Tap */ = {
 			isa = PBXGroup;
 			children = (
 				6DD2EDD427F61D43008D29B9 /* TapPracticeViewController.swift */,
@@ -199,7 +235,7 @@
 				6DD2EDD027F501CD008D29B9 /* TapViewController.swift */,
 				6DD2EDDB27F640DD008D29B9 /* TapCounter.swift */,
 			);
-			path = Swipe;
+			path = Tap;
 			sourceTree = "<group>";
 		};
 		6DD2EDDD27F641C0008D29B9 /* Wink */ = {
@@ -222,6 +258,17 @@
 				6DD2EDED27F64D0C008D29B9 /* HeadPracticeViewController.swift */,
 			);
 			path = Head;
+			sourceTree = "<group>";
+		};
+		6DD2EDF727FCDEC6008D29B9 /* Foot */ = {
+			isa = PBXGroup;
+			children = (
+				6DD2EDEF27F655DB008D29B9 /* FootViewController.swift */,
+				6DD2EDF827FCDFCD008D29B9 /* FootModality.swift */,
+				6DD2EDFA27FCE0A8008D29B9 /* FootCounter.swift */,
+				6DD2EDFC27FCE6A6008D29B9 /* FootPracticeViewController.swift */,
+			);
+			path = Foot;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +339,7 @@
 				1E03B15323DB7CCF0081F923 /* Assets.xcassets in Resources */,
 				6DD2EDD927F63D77008D29B9 /* practice.pdf in Resources */,
 				1E03B15123DB7CC90081F923 /* Main.storyboard in Resources */,
+				6D3BDB8E28109BAA009255EE /* Lavalse_d_Amelie.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,19 +412,27 @@
 				6DD2EDBA27F3B734008D29B9 /* CustomCollectionViewCell.swift in Sources */,
 				1E03B14E23DB7CC90081F923 /* ViewController.swift in Sources */,
 				6DD2EDF027F655DB008D29B9 /* FootViewController.swift in Sources */,
+				6D3BDB84280DE614009255EE /* PracticeViewController.swift in Sources */,
+				6D3BDB7C280DE33B009255EE /* SwipeModality.swift in Sources */,
 				1E03B14A23DB7CC90081F923 /* AppDelegate.swift in Sources */,
+				6DD2EDFB27FCE0A8008D29B9 /* FootCounter.swift in Sources */,
 				6DD2EDB627F33839008D29B9 /* HeadViewController.swift in Sources */,
 				6DD2EDC027F3B8D6008D29B9 /* CollectionModel.swift in Sources */,
+				6D3BDB7E280DE3EF009255EE /* SwipeCounter.swift in Sources */,
 				6DD2EDEC27F64CF8008D29B9 /* HeadModality.swift in Sources */,
 				6DD2EDD127F501CD008D29B9 /* TapViewController.swift in Sources */,
 				6DD2EDE327F6440F008D29B9 /* WinkModality.swift in Sources */,
 				6DD2EDD527F61D44008D29B9 /* TapPracticeViewController.swift in Sources */,
 				6DD2EDBD27F3B888008D29B9 /* CollectionViewModel.swift in Sources */,
+				6D3BDB82280DE416009255EE /* SwipePracticeViewController.swift in Sources */,
 				6DD2EDDC27F640DD008D29B9 /* TapCounter.swift in Sources */,
 				1E03B14C23DB7CC90081F923 /* SceneDelegate.swift in Sources */,
+				6DD2EDFD27FCE6A6008D29B9 /* FootPracticeViewController.swift in Sources */,
 				6DD2EDCF27F4F461008D29B9 /* extensionView.swift in Sources */,
 				6DD2EDE527F645DA008D29B9 /* WinkPracticeViewController.swift in Sources */,
+				6D3BDB80280DE3FD009255EE /* SwipeViewController.swift in Sources */,
 				6DD2EDDF27F641D6008D29B9 /* WinkCounter.swift in Sources */,
+				6DD2EDF927FCDFCD008D29B9 /* FootModality.swift in Sources */,
 				6DD2EDEE27F64D0C008D29B9 /* HeadPracticeViewController.swift in Sources */,
 				6DD2EDE127F6422C008D29B9 /* WinkViewController.swift in Sources */,
 				6DD2EDC327F3BAF9008D29B9 /* HomeViewController.swift in Sources */,
@@ -530,14 +586,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4B3XU4SM9C;
+				DEVELOPMENT_TEAM = 8F726SH9US;
 				INFOPLIST_FILE = BlinkPoseAndSwipeiOSMLKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bytes.BlinkAndSwipeiOSMLKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bytepro.BlinkAndSwipeiOSMLKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -550,14 +606,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4B3XU4SM9C;
+				DEVELOPMENT_TEAM = 8F726SH9US;
 				INFOPLIST_FILE = BlinkPoseAndSwipeiOSMLKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bytes.BlinkAndSwipeiOSMLKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bytepro.BlinkAndSwipeiOSMLKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

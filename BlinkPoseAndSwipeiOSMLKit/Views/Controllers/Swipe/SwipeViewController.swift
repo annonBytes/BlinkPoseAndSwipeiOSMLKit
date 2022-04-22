@@ -1,8 +1,8 @@
 //
-//  TapPracticeViewController.swift
+//  SwipeViewController.swift
 //  BlinkPoseAndSwipeiOSMLKit
 //
-//  Created by Ockiya Beinmonyu Daniel on 31.03.22.
+//  Created by Ockiya Beinmonyu Daniel on 18.04.22.
 //  Copyright © 2022 bytes. All rights reserved.
 //
 
@@ -10,34 +10,31 @@ import Foundation
 import UIKit
 import PDFKit
 
-class TapPracticeViewController: UIViewController, PDFViewDelegate, PDFDocumentDelegate {
+class SwipeViewController: UIViewController, PDFViewDelegate, PDFDocumentDelegate, UIGestureRecognizerDelegate {
     
     let pdfView = PDFView()
-    var cameraView : CameraView!
     
-    override func loadView() {
-        view = UIView()
-        configureNavigationBarButtonItem()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemFill
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(backTapped))
         setUpPDFView()
         setUpConstraints()
         setUpSwipeGesture()
     }
     
-    func setUpPDFView() {
-        pdfView.translatesAutoresizingMaskIntoConstraints = false
-        pdfView.displayDirection = .horizontal
-        pdfView.displayMode = .singlePage
-        pdfView.autoScales = true
-        
-        
-        guard let path = Bundle.main.url(forResource: "practice", withExtension: "pdf") else { return }
-        if let document = PDFDocument(url: path) {
-            pdfView.document = document
-            document.delegate = self
+    @objc func doneTapped() {
+        if let url = URL(string: "https://forms.gle/wj8MGZLxWhwBQqEB9") {
+            UIApplication.shared.open(url)
         }
     }
     
- 
+    @objc func backTapped() {
+        let newVC = HomeViewController()
+        navigationController?.pushViewController(newVC, animated: true)
+    }
+    
     func setUpConstraints() {
         view.addSubview(pdfView)
         NSLayoutConstraint.activate([
@@ -48,6 +45,21 @@ class TapPracticeViewController: UIViewController, PDFViewDelegate, PDFDocumentD
         ])
     }
     
+   
+    func setUpPDFView() {
+        pdfView.translatesAutoresizingMaskIntoConstraints = false
+        pdfView.displayDirection = .horizontal
+        pdfView.displayMode = .singlePage
+        pdfView.autoScales = true
+        
+        
+        guard let path = Bundle.main.url(forResource: "Lavalse_d_Amelie", withExtension: "pdf") else { return }
+        if let document = PDFDocument(url: path) {
+            pdfView.document = document
+            document.delegate = self
+        }
+    }
+    
     
     func setUpSwipeGesture() {
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(moveToNextItem(_:)))
@@ -56,7 +68,8 @@ class TapPracticeViewController: UIViewController, PDFViewDelegate, PDFDocumentD
         rightSwipe.direction = .right
         pdfView.addGestureRecognizer(leftSwipe)
         pdfView.addGestureRecognizer(rightSwipe)
-    }
+       }
+   
     
     @objc func moveToNextItem(_ sender:UISwipeGestureRecognizer) {
         switch sender.direction{
@@ -68,24 +81,6 @@ class TapPracticeViewController: UIViewController, PDFViewDelegate, PDFDocumentD
             print("default")
         }
     }
-    
-        func configureNavigationBarButtonItem() {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backTapped))
-    
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start Test", style: .plain, target: self, action: #selector(startSwipe))
-        }
-    
-        @objc func startSwipe(){
-          let tapView = TapViewController()
-            navigationController?.pushViewController(tapView, animated: true)
-        }
-    
-        @objc func backTapped() {
-            let newVC = HomeViewController()
-            navigationController?.pushViewController(newVC, animated: true)
-        }
-    
-    
-    
-}
 
+
+}

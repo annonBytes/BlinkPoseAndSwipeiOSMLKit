@@ -23,7 +23,7 @@ final class CameraView: UIView {
         o.performanceMode = .accurate
         o.classificationMode = .all
         o.isTrackingEnabled = false
-        
+//        o.performanceMode = .fast
         return o
     }()
     
@@ -179,6 +179,8 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
         return deviceOrientation()
     }
     
+    
+    
     private func detectFacesOnDevice(in image: VisionImage, width: CGFloat, height: CGFloat) {
         
         let faceDetector = vision.faceDetector(options: options)
@@ -194,6 +196,7 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
                 return
             }
             
+            
             if let face = features.first{
                 
                 let leftEyeOpenProbability = face.leftEyeOpenProbability
@@ -201,25 +204,26 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
                 let rightHeadMoveProbability = face.headEulerAngleZ
                 let leftHeadMoveProbability = face.headEulerAngleZ
                 
-                print("head euler X angle is \(face.headEulerAngleZ)")
-                print("eye movement is \(face.leftEyeOpenProbability)")
+//                print("head euler X angle is \(face.headEulerAngleZ)")
+//                print("left eye movement is \(face.leftEyeOpenProbability)")
+//                print("right eye movement is \(face.rightEyeOpenProbability)")
+            
+                if leftEyeOpenProbability > 0.95 && rightEyeOpenProbability < 0.1
+                                {
+                                    if self.restingFace {
+                                        self.blinkDelegate?.rightBlink()
+                                        self.restingFace = false
+                                    }
+                                }
+                else if rightEyeOpenProbability > 0.95 && leftEyeOpenProbability < 0.1
+                                {
+                                    if self.restingFace {
+                                        self.restingFace = false
+                                        self.blinkDelegate?.leftBlink()
+                                    }
+                                }
                 
-                if leftEyeOpenProbability > 0.85 && rightEyeOpenProbability < 0.1
-                {
-                    if self.restingFace{
-                        self.restingFace = false
-                        self.blinkDelegate?.rightBlink()
-                    }
-                }
-                else if rightEyeOpenProbability > 0.85 && leftEyeOpenProbability < 0.1
-                {
-                    if self.restingFace{
-                        self.restingFace = false
-                        self.blinkDelegate?.leftBlink()
-                        
-                    }
-                }
-                
+             
                 else if rightHeadMoveProbability < -25
                 {
                     if self.restingFace{
@@ -242,5 +246,26 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
             }
         })
     }
+        
     
 }
+
+//extension CameraView {
+//
+//    private func addObservers() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(sessionChanges), name: Notification.Name("AVCaptureSessionRuntimeErrorNotification"), object: session)
+//    }
+//
+//    @objc func sessionChanges(_ notification: Notification){
+//        let session = AVCaptureSession()
+//        guard let changeValue = notification.userInfo?[AVCaptureSession] as?  NSData else { return }
+//
+//        let valueChanged = AVCaptureVideoDataOutput()
+//
+//        if valueChanged == .KeyValueObservingPublisher {
+//            sessionQueue.async
+//        }
+//    }
+//}
+
+

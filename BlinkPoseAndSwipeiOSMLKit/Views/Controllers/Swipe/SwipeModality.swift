@@ -1,15 +1,16 @@
 //
-//  FootViewController.swift
+//  SwipeModality.swift
 //  BlinkPoseAndSwipeiOSMLKit
 //
-//  Created by Ockiya Beinmonyu Daniel on 31.03.22.
+//  Created by Ockiya Beinmonyu Daniel on 18.04.22.
 //  Copyright © 2022 bytes. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class FootViewController: UIViewController {
+
+class SwipeModality: UIViewController {
     let fourthView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -66,10 +67,10 @@ class FootViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("PRACTICE NOW", for: .normal)
-        button.setTitleColor(UIColor(red: 0.204, green: 0.842, blue: 0.875, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor(red: 0.06, green: 0.857, blue: 0.536, alpha: 1), for: .normal)
         button.layer.cornerRadius = 12
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor(red: 0.204, green: 0.842, blue: 0.875, alpha: 1).cgColor
+        button.layer.borderColor = UIColor(red: 0.06, green: 0.857, blue: 0.536, alpha: 1).cgColor
         button.addTarget(self, action: #selector(practiceTapped), for: .touchUpInside)
         return button
     }()
@@ -78,7 +79,7 @@ class FootViewController: UIViewController {
          let button = UIButton()
          button.translatesAutoresizingMaskIntoConstraints = false
          button.setTitle("TAKE TEST", for: .normal)
-         button.backgroundColor = UIColor(red: 0.204, green: 0.842, blue: 0.875, alpha: 1)
+         button.backgroundColor = UIColor(red: 0.06, green: 0.857, blue: 0.536, alpha: 1)
          button.layer.cornerRadius = 12
          button.addTarget(self, action: #selector(testTapped), for: .touchUpInside)
          return button
@@ -86,7 +87,7 @@ class FootViewController: UIViewController {
     
     var detailTitle: String = ""
     var messageTitle: String = ""
-    var usedColor = UIColor(red: 0.98, green: 0.388, blue: 0.337, alpha: 1)
+    var usedColor = UIColor(red: 0.06, green: 0.857, blue: 0.536, alpha: 1)
     override func viewDidLoad() {
         super.viewDidLoad()
        view.backgroundColor = .systemBackground
@@ -103,7 +104,7 @@ class FootViewController: UIViewController {
         paragraphStyle.lineHeightMultiple = 1.15
         messageTextView.attributedText = NSMutableAttributedString(
             string:
-                "You will have to perform a page turn while playing the piano by turning youur head left and right. Right below you can see a button that let’s you see a sample PDF document to practice with. \n\nYou wcan practice the modality with the PDF before proceeding to take the actual test. Once you are satisifed with the practice then you proceed to start the test by clicking on the ‘TAKE TEST’ button. \n\nAlso worth noting that while playing, Try to continue playing admist making mistakes\n\nAfter finishing with note, You will take a short survey to give feedback.",
+                "You will have to perform a page turn while playing the piano by swiping left and right. Right below you can see a button that let’s you see a sample PDF document to practice with. \n\nYou wcan practice the modality with the PDF before proceeding to take the actual test. Once you are satisifed with the practice then you proceed to start the test by clicking on the ‘TAKE TEST’ button. \n\nAlso worth noting that while playing, Try to continue playing admist making mistakes\n\nAfter finishing with note, You will take a short survey to give feedback.",
             attributes: [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
                 NSAttributedString.Key.font: UIFont.systemFont(
@@ -152,12 +153,12 @@ class FootViewController: UIViewController {
     }
     
     @objc func testTapped() {
-//        let newVc = HeadCounter()
-//        navigationController?.pushViewController(newVc, animated: true)
+        let newVc = SwipeCounter()
+        navigationController?.pushViewController(newVc, animated: true)
     }
     
     @objc func practiceTapped() {
-//        let newVc = HeadPracticeViewController()
-//        navigationController?.pushViewController(newVc, animated: true)
+        let newVc = SwipePracticeViewController()
+        navigationController?.pushViewController(newVc, animated: true)
     }
 }

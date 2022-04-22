@@ -1,26 +1,26 @@
 //
-//  TapModality.swift
+//  FootModality.swift
 //  BlinkPoseAndSwipeiOSMLKit
 //
-//  Created by Ockiya Beinmonyu Daniel on 31.03.22.
+//  Created by Ockiya Beinmonyu Daniel on 05.04.22.
 //  Copyright © 2022 bytes. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class TapModality: UIViewController {
-    
-    let firstView: UIView = {
+
+class FootModality: UIViewController {
+    let fourthView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 15
-        view.backgroundColor = UIColor(red: 0.349, green: 0.059, blue: 0.965, alpha: 1)
+        view.backgroundColor = UIColor(red: 0.98, green: 0.388, blue: 0.337, alpha: 1)
         view.clipsToBounds = true
         return view
     }()
     
-    let firstImageView: UIImageView = {
+    let SecondImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
@@ -31,7 +31,7 @@ class TapModality: UIViewController {
     let titleLabel: UILabel = {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
-        title.text = "Tap Modality for turning pages"
+        title.text = "Head gesture for page turning"
         title.font = UIFont(name: "Helvetica-Bold", size: 18)
         title.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         return title
@@ -40,7 +40,7 @@ class TapModality: UIViewController {
     let messageLabel: UILabel = {
         let message = UILabel()
         message.translatesAutoresizingMaskIntoConstraints = false
-        message.text = "Tap modality"
+        message.text = "Head modality"
         message.font = UIFont(name: "Helvetica-Light", size: 14)
         message.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         return message
@@ -67,10 +67,10 @@ class TapModality: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("PRACTICE NOW", for: .normal)
-        button.setTitleColor(UIColor(red: 0.349, green: 0.059, blue: 0.965, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor(red: 0.204, green: 0.842, blue: 0.875, alpha: 1), for: .normal)
         button.layer.cornerRadius = 12
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor(red: 0.349, green: 0.059, blue: 0.965, alpha: 1).cgColor
+        button.layer.borderColor = UIColor(red: 0.204, green: 0.842, blue: 0.875, alpha: 1).cgColor
         button.addTarget(self, action: #selector(practiceTapped), for: .touchUpInside)
         return button
     }()
@@ -79,7 +79,7 @@ class TapModality: UIViewController {
          let button = UIButton()
          button.translatesAutoresizingMaskIntoConstraints = false
          button.setTitle("TAKE TEST", for: .normal)
-         button.backgroundColor = UIColor(red: 0.349, green: 0.059, blue: 0.965, alpha: 1)
+         button.backgroundColor = UIColor(red: 0.204, green: 0.842, blue: 0.875, alpha: 1)
          button.layer.cornerRadius = 12
          button.addTarget(self, action: #selector(testTapped), for: .touchUpInside)
          return button
@@ -87,14 +87,14 @@ class TapModality: UIViewController {
     
     var detailTitle: String = ""
     var messageTitle: String = ""
-    var usedColor = UIColor(red: 0.349, green: 0.059, blue: 0.965, alpha: 1)
+    var usedColor = UIColor(red: 0.98, green: 0.388, blue: 0.337, alpha: 1)
     override func viewDidLoad() {
         super.viewDidLoad()
        view.backgroundColor = .systemBackground
         self.navigationController?.navigationBar.tintColor = UIColor.systemGray6
         titleLabel.text = detailTitle
         messageLabel.text = messageTitle
-        firstView.backgroundColor = usedColor
+        fourthView.backgroundColor = usedColor
         setUpConstraint()
         setupView()
     }
@@ -104,7 +104,7 @@ class TapModality: UIViewController {
         paragraphStyle.lineHeightMultiple = 1.15
         messageTextView.attributedText = NSMutableAttributedString(
             string:
-                "You will have to perform a page turn while playing the piano by turning the sheet with a tap on the screen. Right below you can see a button that let’s you see a sample digital note to practice with. \n\nYou will have a note to play within 10 minutes. Once you are satisifed with the practice then you proceed to start the test by clicking on the ‘TAKE TEST’ button. \n\nAlso worth noting that while playing, Try to continue playing admist making mistakes\n\nAfter finishing with note, You will take a short survey to give feedback.",
+                "You will have to perform a page turn while playing the piano by using the foot pedal. Right below you can see a button that let’s you see a sample PDF document to practice with. \n\nYou wcan practice the modality with the PDF before proceeding to take the actual test. Once you are satisifed with the practice then you proceed to start the test by clicking on the ‘TAKE TEST’ button. \n\nAlso worth noting that while playing, Try to continue playing admist making mistakes\n\nAfter finishing with note, You will take a short survey to give feedback.",
             attributes: [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
                 NSAttributedString.Key.font: UIFont.systemFont(
@@ -114,28 +114,28 @@ class TapModality: UIViewController {
     }
     
     func setUpConstraint() {
-        view.addSubview(firstView)
-        firstView.addSubview(firstImageView)
-        firstView.addSubview(titleLabel)
-        firstView.addSubview(messageLabel)
+        view.addSubview(fourthView)
+        fourthView.addSubview(SecondImageView)
+        fourthView.addSubview(titleLabel)
+        fourthView.addSubview(messageLabel)
         view.addSubview(instructionsLabel)
         view.addSubview(messageTextView)
         view.addSubview(practiceButton)
         view.addSubview(testButton)
         NSLayoutConstraint.activate([
-            firstView.heightAnchor.constraint(equalToConstant: 250),
-            firstView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            firstView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            firstView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            firstImageView.centerXAnchor.constraint(equalTo: firstView.centerXAnchor),
-            firstImageView.topAnchor.constraint(equalTo: firstView.topAnchor, constant: 60),
-            firstImageView.heightAnchor.constraint(equalToConstant: 100),
-            firstImageView.widthAnchor.constraint(equalToConstant: 100),
-            titleLabel.topAnchor.constraint(equalTo: firstImageView.bottomAnchor, constant: 20),
-            titleLabel.leadingAnchor.constraint(equalTo: firstView.leadingAnchor, constant: 10),
+            fourthView.heightAnchor.constraint(equalToConstant: 250),
+            fourthView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            fourthView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            fourthView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            SecondImageView.centerXAnchor.constraint(equalTo: fourthView.centerXAnchor),
+            SecondImageView.topAnchor.constraint(equalTo: fourthView.topAnchor, constant: 60),
+            SecondImageView.heightAnchor.constraint(equalToConstant: 100),
+            SecondImageView.widthAnchor.constraint(equalToConstant: 100),
+            titleLabel.topAnchor.constraint(equalTo: SecondImageView.bottomAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: fourthView.leadingAnchor, constant: 10),
             messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            messageLabel.leadingAnchor.constraint(equalTo: firstView.leadingAnchor, constant: 10),
-            instructionsLabel.topAnchor.constraint(equalTo: firstView.bottomAnchor, constant: 30),
+            messageLabel.leadingAnchor.constraint(equalTo: fourthView.leadingAnchor, constant: 10),
+            instructionsLabel.topAnchor.constraint(equalTo: fourthView.bottomAnchor, constant: 30),
             instructionsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             messageTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             messageTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
@@ -153,12 +153,12 @@ class TapModality: UIViewController {
     }
     
     @objc func testTapped() {
-        let newVc = TapCounter()
+        let newVc = FootCounter()
         navigationController?.pushViewController(newVc, animated: true)
     }
     
     @objc func practiceTapped() {
-        let newVc = TapPracticeViewController()
+        let newVc = FootPracticeViewController()
         navigationController?.pushViewController(newVc, animated: true)
     }
 }

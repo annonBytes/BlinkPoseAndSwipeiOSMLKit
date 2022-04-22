@@ -1,16 +1,16 @@
 //
-//  HeadCounter.swift
+//  SwipeCounter.swift
 //  BlinkPoseAndSwipeiOSMLKit
 //
-//  Created by Ockiya Beinmonyu Daniel on 31.03.22.
+//  Created by Ockiya Beinmonyu Daniel on 18.04.22.
 //  Copyright © 2022 bytes. All rights reserved.
 //
 
 import Foundation
 import UIKit
-import Lottie 
+import Lottie
 
-class HeadCounter: UIViewController {
+class SwipeCounter: UIViewController {
     let animationView = AnimationView()
     
     override func viewDidLoad() {
@@ -28,7 +28,7 @@ class HeadCounter: UIViewController {
         animationView.loopMode = .loop
         animationView.play(fromProgress: 0, toProgress: 1, loopMode: .playOnce) { [weak self ] finished in
             if finished {
-                let newVc = HeadViewController()
+                let newVc = SwipeViewController()
                 self?.navigationController?.pushViewController(newVc, animated: true)
             }
         }

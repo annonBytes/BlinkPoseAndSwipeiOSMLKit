@@ -62,7 +62,7 @@ class WinkViewController: UIViewController, PDFViewDelegate, PDFDocumentDelegate
             pdfView.displayMode = .singlePage
             pdfView.autoScales = true
             
-            guard let path = Bundle.main.url(forResource: "TURNING PAGE", withExtension: "pdf") else { return }
+            guard let path = Bundle.main.url(forResource: "Lavalse_d_Amelie", withExtension: "pdf") else { return }
             if let document = PDFDocument(url: path) {
                 pdfView.document = document
                 document.delegate = self
@@ -91,7 +91,7 @@ class WinkViewController: UIViewController, PDFViewDelegate, PDFDocumentDelegate
         }
     
         @objc func doneTapped(){
-            if let url = URL(string: "https://forms.gle/QCb4iyW4WvmRVXTg7") {
+            if let url = URL(string: "https://forms.gle/WBGgYq4M2hpt39of7") {
                 UIApplication.shared.open(url)
             }
         }

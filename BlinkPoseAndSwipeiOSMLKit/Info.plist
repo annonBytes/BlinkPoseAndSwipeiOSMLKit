@@ -22,6 +22,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>App uses Bluetooth to connect to the foot pedal</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>App uses Bluetooth to connect to the Foot pedal</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Configure MLKit Face Detection</string>
 	<key>UIApplicationSceneManifest</key>
@@ -50,6 +54,10 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+	</array>
+	<key>UISupportedExternalAccessoryProtocols</key>
+	<array>
+		<string>com.irig.blueturn</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

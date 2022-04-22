@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import PDFKit
 
-class TapViewController: UIViewController, PDFViewDelegate, PDFDocumentDelegate {
+class TapViewController: UIViewController, PDFViewDelegate, PDFDocumentDelegate, UIGestureRecognizerDelegate {
     
     let pdfView = PDFView()
     
@@ -21,11 +21,11 @@ class TapViewController: UIViewController, PDFViewDelegate, PDFDocumentDelegate 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(backTapped))
         setUpPDFView()
         setUpConstraints()
-        setUpSwipeGesture()
+        setUpTapGesture()
     }
     
     @objc func doneTapped() {
-        if let url = URL(string: "https://forms.gle/QCb4iyW4WvmRVXTg7") {
+        if let url = URL(string: "https://forms.gle/ScBopwsKBm5C8Gix7") {
             UIApplication.shared.open(url)
         }
     }
@@ -53,31 +53,42 @@ class TapViewController: UIViewController, PDFViewDelegate, PDFDocumentDelegate 
         pdfView.autoScales = true
         
         
-        guard let path = Bundle.main.url(forResource: "TURNING PAGE", withExtension: "pdf") else { return }
+        guard let path = Bundle.main.url(forResource: "Lavalse_d_Amelie", withExtension: "pdf") else { return }
         if let document = PDFDocument(url: path) {
             pdfView.document = document
             document.delegate = self
         }
     }
     
-    func setUpSwipeGesture() {
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(moveToNextItem(_:)))
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(moveToNextItem(_:)))
-        leftSwipe.direction = .left
-        rightSwipe.direction = .right
-        pdfView.addGestureRecognizer(leftSwipe)
-        pdfView.addGestureRecognizer(rightSwipe)
-    }
     
-    @objc func moveToNextItem(_ sender:UISwipeGestureRecognizer) {
-        switch sender.direction{
-        case .left:
-            pdfView.goToNextPage(pdfView.next)
-        case .right:
-            pdfView.goToPreviousPage(pdfView.canGoBack)
-        default:
-            print("default")
-        }
-    }
+    func setUpTapGesture() {
+        let touchArea = CGSize(width: 80, height: self.view.frame.height)
+
+            let leftView = UIView(frame: CGRect(origin: .zero, size: touchArea))
+            let rightView = UIView(frame: CGRect(origin: CGPoint(x: self.view.frame.width - touchArea.width, y: 0), size: touchArea))
+
+            leftView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(leftViewTapped)))
+            rightView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(rightViewTapped)))
+
+            leftView.backgroundColor = .clear
+            rightView.backgroundColor = .clear
+
+            self.view.addSubview(leftView)
+            self.view.addSubview(rightView)
+       }
+   
     
+    @objc func leftViewTapped() {
+        print("Left")
+        pdfView.goToPreviousPage(pdfView.canGoBack)
+    }
+
+    @objc func rightViewTapped() {
+        print("Right")
+        pdfView.goToNextPage(pdfView.next)
+    }
+
 }
+
+
+

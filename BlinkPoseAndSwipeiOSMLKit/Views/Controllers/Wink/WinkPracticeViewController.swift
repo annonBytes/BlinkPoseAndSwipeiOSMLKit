@@ -57,7 +57,7 @@ class WinkPracticeViewController: UIViewController, PDFViewDelegate, PDFDocument
             pdfView.autoScales = true
             
             
-            guard let path = Bundle.main.url(forResource: "practice", withExtension: "pdf") else { return }
+            guard let path = Bundle.main.url(forResource: "Lavalse_d_Amelie", withExtension: "pdf") else { return }
             if let document = PDFDocument(url: path) {
                 pdfView.document = document
                 document.delegate = self

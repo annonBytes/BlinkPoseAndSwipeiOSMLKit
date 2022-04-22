@@ -14,5 +14,7 @@ class CollectionViewModel {
         CollectionModel(image: "_Group_ 1", title: "Wink Modality for \npage turning", message: "Wink modality"),
         CollectionModel(image: "_Group_ 1", title: "Head gesture for \npage turning", message: "Head modality"),
         CollectionModel(image: "_Group_ 1", title: "Foot pedal for \npage turning", message: "Base modality"),
+        CollectionModel(image: "_Group_ 1", title: "Swipe gesture for \npage turning", message: "Swipe modality"),
+        CollectionModel(image: "_Group_ 1", title: "Practice Mode", message: "practice Lavalse_d_Amelie"),
     ]
 }

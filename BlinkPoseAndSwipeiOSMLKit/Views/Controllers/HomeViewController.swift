@@ -83,8 +83,14 @@ extension HomeViewController {
         else if selectedCell.title == "Wink Modality for \npage turning" {
             cell.backgroundColor = UIColor(red: 0.98, green: 0.388, blue: 0.337, alpha: 1)
         }
+        else if selectedCell.title == "Foot pedal for \npage turning" {
+            cell.backgroundColor =  UIColor(red: 0.204, green: 0.842, blue: 0.875, alpha: 1)
+        }
+        else if selectedCell.title == "Swipe gesture for \npage turning" {
+            cell.backgroundColor = UIColor(red: 0.06, green: 0.857, blue: 0.536, alpha: 1)
+        }
         else {
-            cell.backgroundColor = UIColor(red: 0.204, green: 0.842, blue: 0.875, alpha: 1)
+            cell.backgroundColor = UIColor(red: 0.043, green: 0.176, blue: 0.646, alpha: 1)
         }
         cell.layer.cornerRadius = 12
         return cell
@@ -97,12 +103,11 @@ extension HomeViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCell = viewModel.collectionModel[indexPath.row]
-        let vc = FootViewController()
+        let vc = PracticeViewController()
         let text = selectedCell.title
         let test = text.replacingOccurrences(of: "\n",
                                              with: "")
-//        vc.messageTitle = selectedCell.message
-//        vc.detailTitle = test
+
         if selectedCell.title == "Tap Modality for \npage turning" {
             let tc = TapModality()
             tc.usedColor = UIColor(red: 0.349, green: 0.059, blue: 0.965, alpha: 1)
@@ -129,8 +134,27 @@ extension HomeViewController {
             wc.messageTitle = selectedCell.message
             wc.detailTitle = test
         }
+        
+        else if selectedCell.title == "Swipe gesture for \npage turning" {
+            let wc = SwipeModality()
+            wc.usedColor = UIColor(red: 0.06, green: 0.857, blue: 0.536, alpha: 1)
+            wc.modalPresentationStyle = .fullScreen
+            navigationController?.pushViewController(wc, animated: true)
+            wc.messageTitle = selectedCell.message
+            wc.detailTitle = test
+        }
+        
+        else if selectedCell.title == "Foot pedal for \npage turning" {
+            let wc = FootModality()
+            wc.usedColor = UIColor(red: 0.204, green: 0.842, blue: 0.875, alpha: 1)
+            wc.modalPresentationStyle = .fullScreen
+            navigationController?.pushViewController(wc, animated: true)
+            wc.messageTitle = selectedCell.message
+            wc.detailTitle = test
+        }
+        
         else {
-            vc.usedColor = UIColor(red: 0.204, green: 0.842, blue: 0.875, alpha: 1)
+            vc.usedColor = UIColor(red: 0.043, green: 0.176, blue: 0.646, alpha: 1)
             vc.modalPresentationStyle = .fullScreen
             navigationController?.pushViewController(vc, animated: true)
             vc.messageTitle = selectedCell.message
@@ -139,3 +163,5 @@ extension HomeViewController {
       
     }
 }
+
+

@@ -9,5 +9,6 @@ target 'BlinkPoseAndSwipeiOSMLKit' do
 pod 'Firebase/MLVision'
 pod 'Firebase/MLVisionFaceModel'
 pod 'lottie-ios'
+pod 'PDFReader'
 
 end
