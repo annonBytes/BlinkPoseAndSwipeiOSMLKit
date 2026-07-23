@@ -8,24 +8,28 @@
 
 import UIKit
 import AVFoundation
-import FirebaseMLVision
+#if canImport(MLKitFaceDetection)
+import MLKitFaceDetection
+import MLKitVision
+#endif
 
 final class CameraView: UIView {
-    
-    private lazy var vision = Vision.vision()
     
     var blinkDelegate : BlinkSwiperDelegate?
     var headDelegate : headSwiperDelegate?
     var restingFace = true
+    var restFace = true
     
-    lazy var options : VisionFaceDetectorOptions = {
-        let o = VisionFaceDetectorOptions()
+    #if canImport(MLKitFaceDetection)
+    lazy var options : FaceDetectorOptions = {
+        let o = FaceDetectorOptions()
         o.performanceMode = .accurate
         o.classificationMode = .all
         o.isTrackingEnabled = false
 //        o.performanceMode = .fast
         return o
     }()
+    #endif
     
     
     private lazy var videoDataOutput: AVCaptureVideoDataOutput = {
@@ -90,44 +94,18 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
             print("Failed to get image buffer from sample buffer.")
             return
         }
+        #if canImport(MLKitFaceDetection)
         let visionImage = VisionImage(buffer: sampleBuffer)
-        let metadata = VisionImageMetadata()
-        let visionOrientation = visionImageOrientation(from: imageOrientation())
-        metadata.orientation = visionOrientation
-        visionImage.metadata = metadata
+        visionImage.orientation = imageOrientation()
         let imageWidth = CGFloat(CVPixelBufferGetWidth(imageBuffer))
         let imageHeight = CGFloat(CVPixelBufferGetHeight(imageBuffer))
         
         DispatchQueue.global().async {
             self.detectFacesOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
         }
+        #endif
         
         
-    }
-    
-    public func visionImageOrientation(
-        from imageOrientation: UIImage.Orientation
-    ) -> VisionDetectorImageOrientation {
-        switch imageOrientation {
-        case .up:
-            return .topLeft
-        case .down:
-            return .bottomRight
-        case .left:
-            return .leftBottom
-        case .right:
-            return .rightTop
-        case .upMirrored:
-            return .topRight
-        case .downMirrored:
-            return .bottomLeft
-        case .leftMirrored:
-            return .leftTop
-        case .rightMirrored:
-            return .rightBottom
-        @unknown default:
-            fatalError()
-        }
     }
     
     public  func imageOrientation(
@@ -181,9 +159,10 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     
     
+    #if canImport(MLKitFaceDetection)
     private func detectFacesOnDevice(in image: VisionImage, width: CGFloat, height: CGFloat) {
         
-        let faceDetector = vision.faceDetector(options: options)
+        let faceDetector = FaceDetector.faceDetector(options: options)
         
         faceDetector.process(image, completion: { features, error in
             if let error = error {
@@ -197,34 +176,17 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
             }
             
             
-            if let face = features.first{
+            if let face = features.first {
                 
-                let leftEyeOpenProbability = face.leftEyeOpenProbability
-                let rightEyeOpenProbability = face.rightEyeOpenProbability
+             
                 let rightHeadMoveProbability = face.headEulerAngleZ
                 let leftHeadMoveProbability = face.headEulerAngleZ
                 
 //                print("head euler X angle is \(face.headEulerAngleZ)")
 //                print("left eye movement is \(face.leftEyeOpenProbability)")
 //                print("right eye movement is \(face.rightEyeOpenProbability)")
-            
-                if leftEyeOpenProbability > 0.95 && rightEyeOpenProbability < 0.1
-                                {
-                                    if self.restingFace {
-                                        self.blinkDelegate?.rightBlink()
-                                        self.restingFace = false
-                                    }
-                                }
-                else if rightEyeOpenProbability > 0.95 && leftEyeOpenProbability < 0.1
-                                {
-                                    if self.restingFace {
-                                        self.restingFace = false
-                                        self.blinkDelegate?.leftBlink()
-                                    }
-                                }
-                
              
-                else if rightHeadMoveProbability < -25
+                 if rightHeadMoveProbability < -25
                 {
                     if self.restingFace{
                         self.restingFace = false
@@ -244,8 +206,57 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
                     self.restingFace = true
                 }
             }
+            
+            
+            if let faces = features.first{
+
+                let leftEyeOpenProbability = faces.leftEyeOpenProbability
+                let rightEyeOpenProbability = faces.rightEyeOpenProbability
+//              let smilingProbability = faces.smilingProbability
+                
+//                print("smiling value is \(faces.smilingProbability)")
+//                                print("left eye movement is \(faces.leftEyeOpenProbability)")
+//                                print("right eye movement is \(faces.rightEyeOpenProbability)")
+                
+//                if leftEyeOpenProbability > 0.95 && rightEyeOpenProbability > 0.95
+//                                {
+//                                    self.restFace = true
+//                             }
+                
+                 if leftEyeOpenProbability > 0.95 && rightEyeOpenProbability < 0.1
+                                {
+                                    if self.restFace {
+                                        self.restFace = false
+//                                        self.blinkDelegate?.rightBlink()
+                                        self.blinkDelegate?.leftBlink()
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1)
+                                        {self.restFace = true}
+                                    }
+                                }
+        
+                else if rightEyeOpenProbability > 0.95 && leftEyeOpenProbability < 0.1
+                                {
+                                    if self.restFace {
+                                        self.restFace = false
+//                                        self.blinkDelegate?.leftBlink()
+                                        self.blinkDelegate?.rightBlink()
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1)
+                                        {self.restFace = true}
+                                    }
+                            }
+                
+                else if rightEyeOpenProbability >=  leftEyeOpenProbability && leftEyeOpenProbability <= rightEyeOpenProbability {
+                    self.restFace = true
+                }
+                
+//                else {
+//                    self.restFace = false
+//                }
+            }
+
         })
     }
+    #endif
         
     
 }
@@ -267,5 +278,3 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
 //        }
 //    }
 //}
-
-

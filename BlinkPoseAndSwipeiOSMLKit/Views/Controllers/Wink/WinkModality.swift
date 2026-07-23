@@ -157,7 +157,7 @@ class WinkModality: UIViewController {
     }
     
     @objc func practiceTapped() {
-        let newVc = WinkPracticeViewController()
+        let newVc = WinkIt()
         navigationController?.pushViewController(newVc, animated: true)
     } 
 }

@@ -28,7 +28,7 @@ class WinkCounter: UIViewController {
         animationView.loopMode = .loop
         animationView.play(fromProgress: 0, toProgress: 1, loopMode: .playOnce) { [weak self ] finished in
             if finished {
-                let newVc = WinkViewController()
+                let newVc = WinkItViewController()
                 self?.navigationController?.pushViewController(newVc, animated: true)
             }
         }

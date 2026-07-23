@@ -1,0 +1,78 @@
+{
+  "" : {
+    "diagnostics" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFReader-master.dia",
+    "emit-module-dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFReader-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFReader-master-emit-module.dia",
+    "swift-dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFReader-master.swiftdeps"
+  },
+  "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/PDFReader/Sources/Classes/PDFDocument.swift" : {
+    "const-values" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFDocument.swiftconstvalues",
+    "dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFDocument.d",
+    "diagnostics" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFDocument.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFDocument.o",
+    "llvm-bc" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFDocument.bc",
+    "object" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFDocument.o",
+    "swift-dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFDocument.swiftdeps",
+    "swiftmodule" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFDocument~partial.swiftmodule"
+  },
+  "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/PDFReader/Sources/Classes/PDFPageCollectionViewCell.swift" : {
+    "const-values" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageCollectionViewCell.swiftconstvalues",
+    "dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageCollectionViewCell.d",
+    "diagnostics" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageCollectionViewCell.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageCollectionViewCell.o",
+    "llvm-bc" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageCollectionViewCell.bc",
+    "object" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageCollectionViewCell.o",
+    "swift-dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageCollectionViewCell.swiftdeps",
+    "swiftmodule" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageCollectionViewCell~partial.swiftmodule"
+  },
+  "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/PDFReader/Sources/Classes/PDFPageView.swift" : {
+    "const-values" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageView.swiftconstvalues",
+    "dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageView.d",
+    "diagnostics" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageView.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageView.o",
+    "llvm-bc" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageView.bc",
+    "object" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageView.o",
+    "swift-dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageView.swiftdeps",
+    "swiftmodule" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFPageView~partial.swiftmodule"
+  },
+  "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/PDFReader/Sources/Classes/PDFThumbnailCell.swift" : {
+    "const-values" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCell.swiftconstvalues",
+    "dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCell.d",
+    "diagnostics" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCell.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCell.o",
+    "llvm-bc" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCell.bc",
+    "object" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCell.o",
+    "swift-dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCell.swiftdeps",
+    "swiftmodule" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCell~partial.swiftmodule"
+  },
+  "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/PDFReader/Sources/Classes/PDFThumbnailCollectionViewController.swift" : {
+    "const-values" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCollectionViewController.swiftconstvalues",
+    "dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCollectionViewController.d",
+    "diagnostics" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCollectionViewController.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCollectionViewController.o",
+    "llvm-bc" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCollectionViewController.bc",
+    "object" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCollectionViewController.o",
+    "swift-dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCollectionViewController.swiftdeps",
+    "swiftmodule" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFThumbnailCollectionViewController~partial.swiftmodule"
+  },
+  "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/PDFReader/Sources/Classes/PDFViewController.swift" : {
+    "const-values" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFViewController.swiftconstvalues",
+    "dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFViewController.d",
+    "diagnostics" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFViewController.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFViewController.o",
+    "llvm-bc" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFViewController.bc",
+    "object" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFViewController.o",
+    "swift-dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFViewController.swiftdeps",
+    "swiftmodule" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/PDFViewController~partial.swiftmodule"
+  },
+  "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/PDFReader/Sources/Classes/TiledView.swift" : {
+    "const-values" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/TiledView.swiftconstvalues",
+    "dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/TiledView.d",
+    "diagnostics" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/TiledView.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/TiledView.o",
+    "llvm-bc" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/TiledView.bc",
+    "object" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/TiledView.o",
+    "swift-dependencies" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/TiledView.swiftdeps",
+    "swiftmodule" : "/Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/PDFReader.build/Objects-normal/arm64/TiledView~partial.swiftmodule"
+  }
+}

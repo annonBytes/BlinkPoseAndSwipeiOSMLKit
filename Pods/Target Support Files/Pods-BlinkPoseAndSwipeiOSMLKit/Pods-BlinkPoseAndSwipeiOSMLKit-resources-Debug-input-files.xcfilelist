@@ -1,2 +1,2 @@
 ${PODS_ROOT}/Target Support Files/Pods-BlinkPoseAndSwipeiOSMLKit/Pods-BlinkPoseAndSwipeiOSMLKit-resources.sh
-${PODS_CONFIGURATION_BUILD_DIR}/FirebaseMLVisionFaceModel/GoogleMVFaceDetectorResources.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/MLKitFaceDetection/GoogleMVFaceDetectorResources.bundle

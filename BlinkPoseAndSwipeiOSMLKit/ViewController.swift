@@ -16,7 +16,7 @@
 
 //class ViewController: UIViewController ,PDFDocumentDelegate, PDFViewDelegate, BlinkSwiperDelegate{
 //
-//    let pdfView = PDFView()
+//    let pdfView = PDFView() 
 //
 //    func leftBlink() {
 //        pdfView.goToPreviousPage(pdfView.canGoBack)
@@ -32,7 +32,8 @@
 //    var leftButton : UIButton!, rightButton : UIButton!
 //
 //
-//    var cameraView : CameraView!
+//    var cameraView : CameraView!h#äoziuzegtfr4de3swedr
+äöl,kmjnhbgvfcxs
 //
 //
 //

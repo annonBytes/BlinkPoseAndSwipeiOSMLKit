@@ -17,7 +17,7 @@ class SwipePracticeViewController: UIViewController, PDFViewDelegate, PDFDocumen
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemFill
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start Test", style: .done, target: self, action: #selector(doneTapped))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(backTapped))
         setUpPDFView()
         setUpConstraints()
@@ -25,9 +25,8 @@ class SwipePracticeViewController: UIViewController, PDFViewDelegate, PDFDocumen
     }
     
     @objc func doneTapped() {
-        if let url = URL(string: "https://forms.gle/QCb4iyW4WvmRVXTg7") {
-            UIApplication.shared.open(url)
-        }
+        let SwipeView = SwipeViewController()
+          navigationController?.pushViewController(SwipeView, animated: true)
     }
     
     @objc func backTapped() {

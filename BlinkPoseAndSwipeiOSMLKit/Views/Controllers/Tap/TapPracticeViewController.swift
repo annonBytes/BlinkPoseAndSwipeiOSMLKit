@@ -80,7 +80,7 @@ class TapPracticeViewController: UIViewController, PDFViewDelegate, PDFDocumentD
 
     
     func setUpTapGesture() {
-        let touchArea = CGSize(width: 80, height: self.view.frame.height)
+        let touchArea = CGSize(width: 300, height: self.view.frame.height)
 
             let leftView = UIView(frame: CGRect(origin: .zero, size: touchArea))
             let rightView = UIView(frame: CGRect(origin: CGPoint(x: self.view.frame.width - touchArea.width, y: 0), size: touchArea))

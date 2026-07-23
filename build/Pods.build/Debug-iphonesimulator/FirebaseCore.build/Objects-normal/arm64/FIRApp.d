@@ -1,0 +1,27 @@
+dependencies: \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/include/Darwin.modulemap \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/FirebaseCore.build/module.modulemap \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/FIRApp.m \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/UIKit.framework/Modules/module.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/Foundation.framework/Modules/module.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/include/ObjectiveC.modulemap \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRApp.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/FIRAnalyticsConfiguration.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/FIRBundleUtil.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/FIRComponentContainerInternal.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/Private/FIRComponent.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/Private/FIRComponentContainer.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/Private/FIRComponentType.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/Private/FIRLibrary.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/FIRConfigurationInternal.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRConfiguration.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRLoggerLevel.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/FIRVersion.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/Private/FIRAppInternal.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/Private/FIRErrors.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/Private/FIRErrorCode.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/Private/FIRCoreDiagnosticsConnector.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/Private/FIRLogger.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/Private/FIROptionsInternal.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIROptions.h \
+  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/FirebaseCore/GoogleUtilities/Environment/Private/GULAppEnvironmentUtil.h
