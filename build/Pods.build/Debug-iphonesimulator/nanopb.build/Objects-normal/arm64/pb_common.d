@@ -1,8 +1,0 @@
-dependencies: \
-  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/build/Pods.build/Debug-iphonesimulator/nanopb.build/module.modulemap \
-  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/nanopb/pb_common.c \
-  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/Target\ Support\ Files/nanopb/nanopb-prefix.pch \
-  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/nanopb/pb_common.h \
-  /Users/ockiyadaniel/Downloads/BlinkPoseAndSwipeiOSMLKit/Pods/nanopb/pb.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include/module.modulemap \
-  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/include/c_standard_library.modulemap
