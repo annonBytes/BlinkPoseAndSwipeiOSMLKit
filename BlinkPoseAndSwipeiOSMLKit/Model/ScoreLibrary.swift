@@ -20,7 +20,37 @@ final class ScoreLibrary {
         try? FileManager.default.createDirectory(at: scoresDirectory, withIntermediateDirectories: true)
         load()
         seedWelcomeScoreIfNeeded()
+        #if DEBUG
+        seedDevScores()
+        #endif
     }
+
+    #if DEBUG
+    /// Copyrighted sample scores for testing, bundled into Debug builds only
+    /// from the git-ignored DevSeed/ folder. They go to the top of the library
+    /// so the first score you open is real sheet music.
+    static var devSeedURLs: [URL] {
+        guard let dir = Bundle.main.url(forResource: "DevSeed", withExtension: nil),
+              let files = try? FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil) else { return [] }
+        return files.filter { $0.pathExtension.lowercased() == "pdf" }.sorted { $0.lastPathComponent < $1.lastPathComponent }
+    }
+
+    private func seedDevScores() {
+        var inserted = false
+        for (offset, source) in Self.devSeedURLs.enumerated() {
+            let fileName = "devseed-\(source.lastPathComponent)"
+            guard !scores.contains(where: { $0.fileName == fileName }) else { continue }
+            let destination = scoresDirectory.appendingPathComponent(fileName)
+            if !FileManager.default.fileExists(atPath: destination.path) {
+                try? FileManager.default.copyItem(at: source, to: destination)
+            }
+            let title = source.deletingPathExtension().lastPathComponent
+            scores.insert(Score(title: title, fileName: fileName, preferredModality: .swipe), at: min(offset, scores.count))
+            inserted = true
+        }
+        if inserted { save() }
+    }
+    #endif
 
     func fileURL(for score: Score) -> URL {
         scoresDirectory.appendingPathComponent(score.fileName)

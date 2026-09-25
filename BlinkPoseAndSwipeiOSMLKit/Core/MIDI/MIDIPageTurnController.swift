@@ -14,6 +14,8 @@ final class MIDIPageTurnController {
 
     var onModeChanged: ((Mode) -> Void)?
     var onRecordingFinished: (([PageMark]) -> Void)?
+    /// When set, automatic turns during playback go through this (so the viewer can animate them).
+    var onNavigate: ((Int) -> Void)?
 
     private let pdfView: PDFView
     private var engine: MIDIPlaybackEngine?
@@ -97,7 +99,9 @@ final class MIDIPageTurnController {
         if mode == .playing {
             // Page shown = the latest recorded mark the track has passed.
             let target = marks.last(where: { $0.beat <= engine.currentBeat })?.page ?? 0
-            if target != currentPageIndex { goToPage(target) }
+            if target != currentPageIndex {
+                if let onNavigate { onNavigate(target) } else { goToPage(target) }
+            }
         }
 
         if engine.hasFinished { stop() }

@@ -115,3 +115,14 @@
 "Terms of Use" = "Conditions d'utilisation";
 "Privacy Policy" = "Politique de confidentialité";
 "About" = "À propos";
+"Page Turn Animation" = "Animation de changement de page";
+"Curl" = "Feuilletage";
+"Slide" = "Glissement";
+"None" = "Aucune";
+"How the page moves when you turn it. Turned off automatically if Reduce Motion is on." = "La façon dont la page bouge quand vous la tournez. Désactivée automatiquement si « Réduire les animations » est activé.";
+
+"Sideways" = "Latéral";
+"Up & Down" = "Haut et bas";
+"Choose the style, the direction the page moves, and how long a turn takes. Faster turns suit quick passages. Turned off automatically if Reduce Motion is on." = "Choisissez le style, la direction du mouvement de la page et la durée d'un tour. Des tours plus rapides conviennent aux passages rapides. Désactivé automatiquement si Réduire les animations est activé.";
+
+"Page-turn method: %@" = "Méthode de tourne de page : %@";

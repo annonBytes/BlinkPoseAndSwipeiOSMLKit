@@ -19,3 +19,6 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# Development-only sample scores (copyrighted music; never commit)
+DevSeed/

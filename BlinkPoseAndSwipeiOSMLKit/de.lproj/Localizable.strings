@@ -115,3 +115,14 @@
 "Terms of Use" = "Nutzungsbedingungen";
 "Privacy Policy" = "Datenschutzerklärung";
 "About" = "Über";
+"Page Turn Animation" = "Umblätter-Animation";
+"Curl" = "Blättern";
+"Slide" = "Schieben";
+"None" = "Keine";
+"How the page moves when you turn it. Turned off automatically if Reduce Motion is on." = "Wie sich die Seite beim Umblättern bewegt. Wird automatisch deaktiviert, wenn „Bewegung reduzieren“ aktiv ist.";
+
+"Sideways" = "Seitwärts";
+"Up & Down" = "Auf & Ab";
+"Choose the style, the direction the page moves, and how long a turn takes. Faster turns suit quick passages. Turned off automatically if Reduce Motion is on." = "Wähle Stil, Richtung der Seitenbewegung und Dauer des Umblätterns. Schnellere Wechsel eignen sich für schnelle Passagen. Wird bei aktivierter Bewegungsreduzierung automatisch deaktiviert.";
+
+"Page-turn method: %@" = "Umblätter-Methode: %@";

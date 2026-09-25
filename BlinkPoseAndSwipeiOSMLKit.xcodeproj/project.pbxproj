@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		023CEF5BC32E19ED2DE400B5 /* SubscriptionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA614DBF2D8E91475E6ABCE /* SubscriptionStore.swift */; };
 		02BB1D240D1E400D890CE1AC /* AnnotationOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB363A443C872409FF1168F /* AnnotationOverlayView.swift */; };
+		17FFEB972F4B3B8259E99687 /* PageTurnAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2EC77111ED8B7F3FE3A177 /* PageTurnAnimator.swift */; };
 		18EE7ED51AE223061506B32B /* AnnotationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D493FB1E70BDE1CB3E340DD0 /* AnnotationTool.swift */; };
 		1DBFD1A2AAD90C3D716FA5E4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D346EAB1AFA139E60A294D0 /* Localizable.strings */; };
 		1E03B14A23DB7CC90081F923 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E03B14923DB7CC90081F923 /* AppDelegate.swift */; };
@@ -81,6 +82,7 @@
 		670A5620EFE42DAFB39B5226 /* SettingsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6DD2EE0027FDF358008D29B9 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		6F12E36F41E35AFB83A32560 /* TapGestureDetector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TapGestureDetector.swift; sourceTree = "<group>"; };
+		6F2EC77111ED8B7F3FE3A177 /* PageTurnAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PageTurnAnimator.swift; sourceTree = "<group>"; };
 		74718BB5B7B8008E8600EE77 /* MetronomeEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MetronomeEngine.swift; sourceTree = "<group>"; };
 		75B51C488D5D9F7635C2DE5E /* EntitlementManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EntitlementManager.swift; sourceTree = "<group>"; };
 		76EFAEBF1E47F161EB10696B /* es */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				7E22DBD7FBC00E3219BA3B57 /* Theme.swift */,
 				21E21DFC132C56418777B7B5 /* MIDI */,
 				4A678D6AA7B9863FEB87275F /* LegalLinks.swift */,
+				6F2EC77111ED8B7F3FE3A177 /* PageTurnAnimator.swift */,
 			);
 			name = Core;
 			path = Core;
@@ -294,6 +297,7 @@
 				1E03B14223DB7CC90081F923 /* Sources */,
 				1E03B14323DB7CC90081F923 /* Frameworks */,
 				1E03B14423DB7CC90081F923 /* Resources */,
+				B92CDC77F04379F8ECB527BB /* Bundle dev-only sample scores (Debug) */,
 			);
 			buildRules = (
 			);
@@ -356,6 +360,28 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B92CDC77F04379F8ECB527BB /* Bundle dev-only sample scores (Debug) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle dev-only sample scores (Debug)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Copyrighted sample scores for testing live in the git-ignored DevSeed/\n# folder and are bundled into Debug builds only, never Release.\nif [ \"${CONFIGURATION}\" = \"Debug\" ] && [ -d \"${SRCROOT}/DevSeed\" ]; then\n  DEST=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DevSeed\"\n  mkdir -p \"${DEST}\"\n  cp -f \"${SRCROOT}/DevSeed/\"*.pdf \"${DEST}/\" 2>/dev/null || true\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1E03B14223DB7CC90081F923 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -397,6 +423,7 @@
 				57087E06FB6729C09FAA6BE3 /* MIDIPageTurnController.swift in Sources */,
 				288E44E4E4E98A797A5179B2 /* GestureCalibrationViewController.swift in Sources */,
 				32A39E51EA764CA892293D78 /* LegalLinks.swift in Sources */,
+				17FFEB972F4B3B8259E99687 /* PageTurnAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

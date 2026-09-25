@@ -17,6 +17,7 @@ final class SettingsViewController: UIViewController {
     private let onWillCalibrate: (() -> Void)?
 
     private let stack = UIStackView()
+    private lazy var animationSpeedLabel = makeLabel(text: "", size: 16, color: .label)
     private lazy var speedValueLabel = makeLabel(text: "", size: 16, color: .label)
 
     init(currentMethod: ModalityKind? = nil, onMethodChanged: ((ModalityKind) -> Void)? = nil, onTrackingChanged: (() -> Void)? = nil, onDismiss: (() -> Void)? = nil, onWillCalibrate: (() -> Void)? = nil) {
@@ -105,6 +106,26 @@ final class SettingsViewController: UIViewController {
         updateSpeedLabel()
         addCard([speedRow], footer: "Adjust the time between page turns, if you gesture continuously.".localized)
 
+        addHeader("Page Turn Animation".localized)
+        let transition = UISegmentedControl(items: PageTransitionStyle.allCases.map(\.title))
+        transition.selectedSegmentIndex = PageTransitionStyle.allCases.firstIndex(of: PageTransitionStyle.current) ?? 0
+        transition.addAction(UIAction { [weak transition] _ in
+            guard let index = transition?.selectedSegmentIndex, index >= 0 else { return }
+            PageTransitionStyle.current = PageTransitionStyle.allCases[index]
+        }, for: .valueChanged)
+        let axis = UISegmentedControl(items: PageTransitionAxis.allCases.map(\.title))
+        axis.selectedSegmentIndex = PageTransitionAxis.allCases.firstIndex(of: PageTransitionAxis.current) ?? 0
+        axis.addAction(UIAction { [weak axis] _ in
+            guard let index = axis?.selectedSegmentIndex, index >= 0 else { return }
+            PageTransitionAxis.current = PageTransitionAxis.allCases[index]
+        }, for: .valueChanged)
+        let animationSpeed = sliderRow(title: nil, value: Float(PageTransitionSpeed.duration), range: PageTransitionSpeed.range, trailingLabel: animationSpeedLabel) { [weak self] in
+            PageTransitionSpeed.duration = TimeInterval($0)
+            self?.updateAnimationSpeedLabel()
+        }
+        updateAnimationSpeedLabel()
+        addCard([transition, axis, animationSpeed], footer: "Choose the style, the direction the page moves, and how long a turn takes. Faster turns suit quick passages. Turned off automatically if Reduce Motion is on.".localized)
+
         addHeader("Alternate Controls".localized)
         if ARFaceTrackingConfiguration.isSupported {
             let force = UISwitch()
@@ -133,6 +154,10 @@ final class SettingsViewController: UIViewController {
             return button
         }
         addCard([link("Terms of Use".localized, LegalLinks.termsOfUse), link("Privacy Policy".localized, LegalLinks.privacyPolicy)])
+    }
+
+    private func updateAnimationSpeedLabel() {
+        animationSpeedLabel.text = String(format: "%.2fs", PageTransitionSpeed.duration)
     }
 
     private func updateSpeedLabel() {

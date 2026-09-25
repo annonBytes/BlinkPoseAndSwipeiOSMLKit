@@ -12,6 +12,9 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
     // be a mislabeled copy of an unrelated, copyrighted worksheet (see repo
     // history), so demo content is synthesized instead of shipped as a file.
     static let demoDocumentURL: URL = {
+        #if DEBUG
+        if let devScore = ScoreLibrary.devSeedURLs.first { return devScore }
+        #endif
         let url = FileManager.default.temporaryDirectory.appendingPathComponent("demo-score.pdf")
         if !FileManager.default.fileExists(atPath: url.path) {
             try? PlaceholderScoreGenerator.generate().write(to: url)
@@ -39,6 +42,7 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
     private let scoreID: UUID?
     private let library = ScoreLibrary.shared
     private lazy var midiController = MIDIPageTurnController(pdfView: pdfView)
+    private lazy var pageAnimator = PageTurnAnimator(pdfView: pdfView)
 
     private var currentScore: Score? {
         scoreID.flatMap { library.score(withID: $0) }
@@ -156,6 +160,7 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
 
     init(documentURL: URL, modality: ModalityKind, score: Score? = nil, onModalityChanged: ((ModalityKind) -> Void)? = nil) {
         self.scoreID = score?.id
+        self.scoreTitle = score?.title ?? documentURL.deletingPathExtension().lastPathComponent
         self.documentURL = documentURL
         self.currentModality = modality
         self.detector = modality.makeDetector()
@@ -167,11 +172,14 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
         fatalError("init(coder:) has not been implemented")
     }
 
+    private let scoreTitle: String
+
     override var canBecomeFirstResponder: Bool { true }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        navigationItem.largeTitleDisplayMode = .never
         let backButton = UIBarButtonItem(image: UIImage(systemName: "folder"), style: .plain, target: self, action: #selector(backTapped))
         backButton.accessibilityLabel = "Back".localized
         navigationItem.leftBarButtonItem = backButton
@@ -190,7 +198,13 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
 
     @objc private func updatePageTitle() {
         guard let document = pdfView.document, let page = pdfView.currentPage else { return }
-        title = "Page %d of %d".localized(document.index(for: page) + 1, document.pageCount)
+        let pageText = "Page %d of %d".localized(document.index(for: page) + 1, document.pageCount)
+        if #available(iOS 26.0, *) {
+            navigationItem.title = scoreTitle
+            navigationItem.subtitle = pageText
+        } else {
+            navigationItem.title = "\(scoreTitle) · \(pageText)"
+        }
         midiController.pageChanged()
     }
 
@@ -263,17 +277,24 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
 
     private func installDetector(_ newDetector: GestureDetector) {
         detector = newDetector
+        feedbackView.setModality(currentModality)
         detector.attach(to: self, pageView: pdfView)
-        detector.onAdvance = { [weak self] in
-            guard let self else { return }
-            self.pdfView.goToNextPage(self.pdfView.next)
-        }
-        detector.onGoBack = { [weak self] in
-            guard let self else { return }
-            self.pdfView.goToPreviousPage(self.pdfView.canGoBack)
-        }
+        detector.onAdvance = { [weak self] in self?.turnPage(forward: true) }
+        detector.onGoBack = { [weak self] in self?.turnPage(forward: false) }
         detector.onGestureBegan = { [weak self] in self?.feedbackView.showActive() }
         detector.onGestureEnded = { [weak self] in self?.feedbackView.showIdle() }
+    }
+
+    private func turnPage(forward: Bool) {
+        pageAnimator.turn(forward: forward) {
+            if forward { pdfView.goToNextPage(nil) } else { pdfView.goToPreviousPage(nil) }
+        }
+    }
+
+    // Used by MIDI auto-turn: jumps to a page, animating in the direction of travel.
+    private func turnPage(toIndex index: Int) {
+        guard let document = pdfView.document, let page = document.page(at: index), let current = pdfView.currentPage, page !== current else { return }
+        pageAnimator.turn(forward: index > document.index(for: current)) { pdfView.go(to: page) }
     }
 
     private func setUpPDFView() {
@@ -302,8 +323,8 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
         NSLayoutConstraint.activate([
             feedbackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             feedbackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            feedbackView.widthAnchor.constraint(equalToConstant: 28),
-            feedbackView.heightAnchor.constraint(equalToConstant: 28),
+            feedbackView.widthAnchor.constraint(equalToConstant: 40),
+            feedbackView.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
 
@@ -400,6 +421,7 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
         ])
 
         midiController.onModeChanged = { [weak self] mode in self?.midiModeChanged(mode) }
+        midiController.onNavigate = { [weak self] index in self?.turnPage(toIndex: index) }
         midiController.onRecordingFinished = { [weak self] marks in self?.saveRecordedMarks(marks) }
         midiButton.menu = makeMIDIMenu()
     }

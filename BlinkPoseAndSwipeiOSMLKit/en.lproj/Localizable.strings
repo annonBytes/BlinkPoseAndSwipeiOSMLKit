@@ -115,3 +115,14 @@
 "Terms of Use" = "Terms of Use";
 "Privacy Policy" = "Privacy Policy";
 "About" = "About";
+"Page Turn Animation" = "Page Turn Animation";
+"Curl" = "Curl";
+"Slide" = "Slide";
+"None" = "None";
+"How the page moves when you turn it. Turned off automatically if Reduce Motion is on." = "How the page moves when you turn it. Turned off automatically if Reduce Motion is on.";
+
+"Sideways" = "Sideways";
+"Up & Down" = "Up & Down";
+"Choose the style, the direction the page moves, and how long a turn takes. Faster turns suit quick passages. Turned off automatically if Reduce Motion is on." = "Choose the style, the direction the page moves, and how long a turn takes. Faster turns suit quick passages. Turned off automatically if Reduce Motion is on.";
+
+"Page-turn method: %@" = "Page-turn method: %@";
