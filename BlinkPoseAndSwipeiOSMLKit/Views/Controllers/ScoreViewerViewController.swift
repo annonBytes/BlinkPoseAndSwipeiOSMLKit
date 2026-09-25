@@ -42,6 +42,15 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
     private let scoreID: UUID?
     private let library = ScoreLibrary.shared
     private lazy var midiController = MIDIPageTurnController(pdfView: pdfView)
+    private lazy var followController: ScoreFollowController = {
+        let controller = ScoreFollowController(currentPage: { [weak self] in self?.currentPageIndex ?? 0 })
+        controller.onNavigate = { [weak self] index in
+            guard let self else { return }
+            self.turnPage(toIndex: index, forward: index > self.currentPageIndex)
+        }
+        controller.onStateChanged = { [weak self] state in self?.followStateChanged(state) }
+        return controller
+    }()
     private lazy var pageAnimator = PageTurnAnimator(pdfView: pdfView)
     private lazy var autoScroller: AutoScroller = {
         let scroller = AutoScroller(pdfView: pdfView)
@@ -650,7 +659,7 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
 
     private func makeAutoTurnMenu(for score: Score) -> UIMenu {
         var items: [UIMenuElement] = []
-        if isCountingDown || midiController.mode != .idle {
+        if isCountingDown || midiController.mode != .idle || followController.isActive {
             items.append(UIAction(title: "Stop".localized, image: UIImage(systemName: "stop.fill"), attributes: .destructive) { [weak self] _ in
                 self?.cancelAutoTurn()
             })
@@ -658,6 +667,15 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
             items.append(UIAction(title: "Start Auto Turn".localized, image: UIImage(systemName: "play.circle")) { [weak self] _ in
                 self?.startAutoTurn(midiURL: midiURL, marks: marks)
             })
+            let followItems = FollowMode.allCases.map { mode in
+                UIAction(title: mode.title, subtitle: mode.explanation,
+                         image: UIImage(systemName: mode == .notes ? "music.note.list" : "metronome"),
+                         state: mode == FollowMode.current ? .on : .off) { [weak self] _ in
+                    FollowMode.current = mode
+                    self?.startFollowing(midiURL: midiURL, marks: marks, mode: mode)
+                }
+            }
+            items.append(UIMenu(title: "Follow My Playing".localized, image: UIImage(systemName: "ear"), children: followItems))
         } else {
             items.append(UIAction(title: "Record page turns in Practice mode first".localized, attributes: .disabled) { _ in })
         }
@@ -698,7 +716,37 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
         }
     }
 
+    private func startFollowing(midiURL: URL, marks: [PageMark], mode: FollowMode) {
+        guard EntitlementManager.hasPerformanceAccess else {
+            present(UINavigationController(rootViewController: PaywallViewController(reason: .autoTurn)), animated: true)
+            return
+        }
+        followController.start(midiURL: midiURL, marks: marks, mode: mode) { [weak self] error in
+            guard let self else { return }
+            if let error {
+                self.presentMIDIMessage(title: "Couldn't Start Listening".localized, message: error.localizedDescription)
+            }
+            self.midiButton.menu = self.makeMIDIMenu()
+        }
+    }
+
+    private func followStateChanged(_ state: ScoreFollowController.State) {
+        switch state {
+        case .idle: midiStatusLabel.isHidden = true
+        case .listening:
+            midiStatusLabel.text = "Listening…".localized
+            midiStatusLabel.isHidden = false
+        case .following:
+            midiStatusLabel.text = "Following your playing".localized
+            midiStatusLabel.isHidden = false
+        }
+        midiButton.configuration?.baseBackgroundColor = state == .idle ? .secondarySystemBackground : Theme.accent
+        midiButton.configuration?.baseForegroundColor = state == .idle ? Theme.accent : .black
+        midiButton.menu = makeMIDIMenu()
+    }
+
     fileprivate func cancelAutoTurn() {
+        followController.stop()
         countdownTimer?.invalidate()
         countdownTimer = nil
         isCountingDown = false

@@ -153,3 +153,14 @@
 "Photos to PDF" = "Fotos in PDF";
 "Scan" = "Scan";
 "Photos" = "Fotos";
+
+"Follow My Playing" = "Meinem Spiel folgen";
+"Follow the Notes" = "Den Noten folgen";
+"Follow My Tempo" = "Meinem Tempo folgen";
+"Matches what you play to the MIDI file. Best for pieces you play accurately." = "Vergleicht dein Spiel mit der MIDI-Datei. Am besten für Stücke, die du genau spielst.";
+"Follows how fast you play. More forgiving of wrong notes and busy rooms." = "Folgt deiner Spielgeschwindigkeit. Toleranter bei falschen Noten und lauten Räumen.";
+"Listening…" = "Höre zu…";
+"Following your playing" = "Folgt deinem Spiel";
+"This MIDI file has no notes to follow." = "Diese MIDI-Datei enthält keine Noten zum Verfolgen.";
+"PageTurn needs microphone access to follow your playing. You can allow it in Settings › PageTurn." = "PageTurn benötigt Mikrofonzugriff, um deinem Spiel zu folgen. Du kannst ihn in Einstellungen › PageTurn erlauben.";
+"Couldn't Start Listening" = "Zuhören nicht möglich";

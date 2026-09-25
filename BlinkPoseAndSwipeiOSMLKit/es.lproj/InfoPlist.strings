@@ -1,1 +1,3 @@
 "NSCameraUsageDescription" = "Se usa para pasar página con un guiño, inclinando la cabeza o moviendo la boca, y para escanear partituras a PDF. Las imágenes de la cámara nunca salen de tu dispositivo.";
+
+"NSMicrophoneUsageDescription" = "Se usa para seguir tu interpretación y pasar la página en el momento justo. El audio se analiza en tu dispositivo y nunca se graba ni se guarda.";

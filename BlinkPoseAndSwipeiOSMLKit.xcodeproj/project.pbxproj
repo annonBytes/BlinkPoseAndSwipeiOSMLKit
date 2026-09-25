@@ -21,8 +21,11 @@
 		286E71FFED713E057CE7079C /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F66946B9A69765FF45150D7 /* ModelTests.swift */; };
 		288E44E4E4E98A797A5179B2 /* GestureCalibrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26977A199F8000C765129D27 /* GestureCalibrationViewController.swift */; };
 		29962997D406AF8E527B56E9 /* GestureSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4310D8C777A54C1C737CB8 /* GestureSettings.swift */; };
+		2F4DA93DD925F53757ACC089 /* ScoreFollowingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3260199A90A78560A143FE7 /* ScoreFollowingTests.swift */; };
 		32A39E51EA764CA892293D78 /* LegalLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A678D6AA7B9863FEB87275F /* LegalLinks.swift */; };
+		3F60E3002235722A459B7F01 /* NoteFollower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DBFF3B1BADC5E760BD4FA7 /* NoteFollower.swift */; };
 		3F77822476E9B7F4741DE874 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3B5F75F70F1462FD1F6CC /* Score.swift */; };
+		40A12226A15464B1DE629E4D /* MIDINoteTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000571DE27231331BABDE289 /* MIDINoteTimeline.swift */; };
 		45BAF840B96EC79C1A4CD1D0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8833D23FAE7875C6B963B460 /* PrivacyInfo.xcprivacy */; };
 		4EA2023A8D6D57EF45EE352A /* TapGestureDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E36F41E35AFB83A32560 /* TapGestureDetector.swift */; };
 		51C005768FCB54843ABC2E75 /* VisionFaceGestureDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214A83EA2DCC7C430BA1D02 /* VisionFaceGestureDetector.swift */; };
@@ -38,6 +41,8 @@
 		6D43643C9EB3A2D57318CBA1 /* ARFaceGestureDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7C8DC2C7E8725D21D96AD3 /* ARFaceGestureDetector.swift */; };
 		6D84A54BD1BE975A69A44218 /* GestureDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276105796F796C064971C3A9 /* GestureDetector.swift */; };
 		6DD2EE0127FDF359008D29B9 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD2EE0027FDF358008D29B9 /* CoreBluetooth.framework */; };
+		754B837A22A3057825148F7D /* MicrophoneAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818C67FE928B13E279097ED /* MicrophoneAnalyzer.swift */; };
+		78E824B1603BECC8A8DBF343 /* ScoreFollowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48693164FC74296237577149 /* ScoreFollowController.swift */; };
 		7B8A612BADCA5745BFFD953C /* MetronomeEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74718BB5B7B8008E8600EE77 /* MetronomeEngine.swift */; };
 		7C27BD0EEC25E0CDFABCFE85 /* GestureFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75B1B95C918C92064CF0B6C /* GestureFeedbackView.swift */; };
 		923D501EC448407D57D9B10C /* LibraryScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F1BB68877F9C27AD5F0A51 /* LibraryScoreCell.swift */; };
@@ -54,6 +59,7 @@
 		DDAA3C0CD58249E35E54AC3A /* HardwareKeyGestureDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A90661836724116B90E13FC /* HardwareKeyGestureDetector.swift */; };
 		EA3F3796E544A54B3CA47A64 /* SwipeGestureDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCA43F81AD6E7AE001A409C /* SwipeGestureDetector.swift */; };
 		ECBFC6B141EBEA95E6DD6A69 /* ScoreLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6341CA3202010BF240356916 /* ScoreLibrary.swift */; };
+		F2B78E321AC8E125A21EF644 /* TempoFollower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974797E79B4F985859BEA93F /* TempoFollower.swift */; };
 		F316ADF85B0BCCA8E93448AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 241FB297565FF94AF24F994A /* InfoPlist.strings */; };
 		FDD7DB6C5B9D26CA0D9A97A1 /* PlaceholderScoreGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8249788828DE6526531AD7AA /* PlaceholderScoreGenerator.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000571DE27231331BABDE289 /* MIDINoteTimeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDINoteTimeline.swift; sourceTree = "<group>"; };
 		0222C0BDCEF47093081F24D9 /* FaceGestureProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FaceGestureProcessor.swift; sourceTree = "<group>"; };
 		0CA614DBF2D8E91475E6ABCE /* SubscriptionStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SubscriptionStore.swift; sourceTree = "<group>"; };
 		0DCA43F81AD6E7AE001A409C /* SwipeGestureDetector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwipeGestureDetector.swift; sourceTree = "<group>"; };
@@ -88,6 +95,7 @@
 		2DEDF72B6CC688FDC8F3B313 /* ScoreViewerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreViewerViewController.swift; sourceTree = "<group>"; };
 		3003215253C7DB10F35A874E /* MIDIPageTurnController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIPageTurnController.swift; sourceTree = "<group>"; };
 		3B4B5F0C355278781B14B7C4 /* es */ = {isa = PBXFileReference; includeInIndex = 1; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		48693164FC74296237577149 /* ScoreFollowController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreFollowController.swift; sourceTree = "<group>"; };
 		4A678D6AA7B9863FEB87275F /* LegalLinks.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LegalLinks.swift; sourceTree = "<group>"; };
 		4A90661836724116B90E13FC /* HardwareKeyGestureDetector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HardwareKeyGestureDetector.swift; sourceTree = "<group>"; };
 		4B2806DE56F8C580F7C78DBF /* PaywallViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PaywallViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +111,7 @@
 		6F12E36F41E35AFB83A32560 /* TapGestureDetector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TapGestureDetector.swift; sourceTree = "<group>"; };
 		6F2EC77111ED8B7F3FE3A177 /* PageTurnAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PageTurnAnimator.swift; sourceTree = "<group>"; };
 		74718BB5B7B8008E8600EE77 /* MetronomeEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MetronomeEngine.swift; sourceTree = "<group>"; };
+		74DBFF3B1BADC5E760BD4FA7 /* NoteFollower.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NoteFollower.swift; sourceTree = "<group>"; };
 		75B51C488D5D9F7635C2DE5E /* EntitlementManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EntitlementManager.swift; sourceTree = "<group>"; };
 		76EFAEBF1E47F161EB10696B /* es */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7A7C8DC2C7E8725D21D96AD3 /* ARFaceGestureDetector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ARFaceGestureDetector.swift; sourceTree = "<group>"; };
@@ -117,7 +126,9 @@
 		8833D23FAE7875C6B963B460 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		941024C16A09B97BD2F96025 /* ModalityKind.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModalityKind.swift; sourceTree = "<group>"; };
 		973CC9E35435679FEFA1BF97 /* de */ = {isa = PBXFileReference; includeInIndex = 1; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		974797E79B4F985859BEA93F /* TempoFollower.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TempoFollower.swift; sourceTree = "<group>"; };
 		9F66946B9A69765FF45150D7 /* ModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
+		A3260199A90A78560A143FE7 /* ScoreFollowingTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreFollowingTests.swift; sourceTree = "<group>"; };
 		A5E3B5F75F70F1462FD1F6CC /* Score.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		A7D5C12C2A2298C126900804 /* fr */ = {isa = PBXFileReference; includeInIndex = 1; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B44ADB96DBBBDD21A7648DC6 /* fr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -128,6 +139,7 @@
 		D75B1B95C918C92064CF0B6C /* GestureFeedbackView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GestureFeedbackView.swift; sourceTree = "<group>"; };
 		D97503B6854F83D1B7D7E3EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		E4BD2398980C7A7620B40D7C /* en */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E818C67FE928B13E279097ED /* MicrophoneAnalyzer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MicrophoneAnalyzer.swift; sourceTree = "<group>"; };
 		F7F1BB68877F9C27AD5F0A51 /* LibraryScoreCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LibraryScoreCell.swift; sourceTree = "<group>"; };
 		FAB363A443C872409FF1168F /* AnnotationOverlayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AnnotationOverlayView.swift; sourceTree = "<group>"; };
 		FF3DDE8B6E24F81E70A0CD1E /* de */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -167,6 +179,7 @@
 				4A678D6AA7B9863FEB87275F /* LegalLinks.swift */,
 				6F2EC77111ED8B7F3FE3A177 /* PageTurnAnimator.swift */,
 				5F082A2B2B77763243A49302 /* AutoScroller.swift */,
+				872630F7544C63F503960FAD /* Follow */,
 			);
 			name = Core;
 			path = Core;
@@ -289,12 +302,26 @@
 			path = Annotation;
 			sourceTree = "<group>";
 		};
+		872630F7544C63F503960FAD /* Follow */ = {
+			isa = PBXGroup;
+			children = (
+				000571DE27231331BABDE289 /* MIDINoteTimeline.swift */,
+				E818C67FE928B13E279097ED /* MicrophoneAnalyzer.swift */,
+				74DBFF3B1BADC5E760BD4FA7 /* NoteFollower.swift */,
+				48693164FC74296237577149 /* ScoreFollowController.swift */,
+				974797E79B4F985859BEA93F /* TempoFollower.swift */,
+			);
+			name = Follow;
+			path = Follow;
+			sourceTree = "<group>";
+		};
 		8A3EA00F81E65B66BF404F7B /* BlinkPoseAndSwipeiOSMLKitTests */ = {
 			isa = PBXGroup;
 			children = (
 				2C2BF3CBBE11EA733F4DB99E /* FaceGestureProcessorTests.swift */,
 				9F66946B9A69765FF45150D7 /* ModelTests.swift */,
 				2198ECB5E02E723AC7A909AB /* TrialAndEntitlementTests.swift */,
+				A3260199A90A78560A143FE7 /* ScoreFollowingTests.swift */,
 			);
 			name = BlinkPoseAndSwipeiOSMLKitTests;
 			path = BlinkPoseAndSwipeiOSMLKitTests;
@@ -503,6 +530,11 @@
 				32A39E51EA764CA892293D78 /* LegalLinks.swift in Sources */,
 				17FFEB972F4B3B8259E99687 /* PageTurnAnimator.swift in Sources */,
 				27A13CDFE0CA578B487737C2 /* AutoScroller.swift in Sources */,
+				40A12226A15464B1DE629E4D /* MIDINoteTimeline.swift in Sources */,
+				754B837A22A3057825148F7D /* MicrophoneAnalyzer.swift in Sources */,
+				3F60E3002235722A459B7F01 /* NoteFollower.swift in Sources */,
+				78E824B1603BECC8A8DBF343 /* ScoreFollowController.swift in Sources */,
+				F2B78E321AC8E125A21EF644 /* TempoFollower.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +545,7 @@
 				B7D84A595DF984CBE3A9111A /* FaceGestureProcessorTests.swift in Sources */,
 				286E71FFED713E057CE7079C /* ModelTests.swift in Sources */,
 				D64A42F6A9985B58E55B5597 /* TrialAndEntitlementTests.swift in Sources */,
+				2F4DA93DD925F53757ACC089 /* ScoreFollowingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

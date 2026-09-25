@@ -1,1 +1,3 @@
 "NSCameraUsageDescription" = "Utilisée pour tourner les pages par clin d'œil, inclinaison de la tête ou mouvement de la bouche, et pour numériser des partitions en PDF. Les images de la caméra ne quittent jamais votre appareil.";
+
+"NSMicrophoneUsageDescription" = "Utilisé pour suivre votre jeu et tourner les pages au bon moment. L'audio est analysé sur votre appareil et n'est jamais enregistré ni conservé.";

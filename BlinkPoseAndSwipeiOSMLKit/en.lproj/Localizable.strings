@@ -153,3 +153,14 @@
 "Photos to PDF" = "Photos to PDF";
 "Scan" = "Scan";
 "Photos" = "Photos";
+
+"Follow My Playing" = "Follow My Playing";
+"Follow the Notes" = "Follow the Notes";
+"Follow My Tempo" = "Follow My Tempo";
+"Matches what you play to the MIDI file. Best for pieces you play accurately." = "Matches what you play to the MIDI file. Best for pieces you play accurately.";
+"Follows how fast you play. More forgiving of wrong notes and busy rooms." = "Follows how fast you play. More forgiving of wrong notes and busy rooms.";
+"Listening…" = "Listening…";
+"Following your playing" = "Following your playing";
+"This MIDI file has no notes to follow." = "This MIDI file has no notes to follow.";
+"PageTurn needs microphone access to follow your playing. You can allow it in Settings › PageTurn." = "PageTurn needs microphone access to follow your playing. You can allow it in Settings › PageTurn.";
+"Couldn't Start Listening" = "Couldn't Start Listening";

@@ -1,1 +1,3 @@
 "NSCameraUsageDescription" = "Wird für Umblättern per Zwinkern, Kopfneigen und Mundbewegung sowie zum Scannen von Noten als PDF verwendet. Kamerabilder verlassen Ihr Gerät nie.";
+
+"NSMicrophoneUsageDescription" = "Wird verwendet, um Ihrem Spiel zu folgen und im richtigen Moment umzublättern. Audio wird auf Ihrem Gerät analysiert und nie aufgenommen oder gespeichert.";

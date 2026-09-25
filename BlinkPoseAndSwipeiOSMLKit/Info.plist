@@ -24,6 +24,8 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Used to follow your playing and turn pages at the right moment. Audio is analysed on your device and never recorded or stored.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Used for wink, head-tilt, and mouth-move page-turning gestures, and to scan sheet music into PDFs. Camera images never leave your device.</string>
 	<key>UIApplicationSceneManifest</key>
