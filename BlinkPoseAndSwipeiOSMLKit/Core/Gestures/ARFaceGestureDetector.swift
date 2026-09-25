@@ -4,11 +4,12 @@ import UIKit
 // Drives wink, head-tilt, and mouth-move modalities off a single ARKit face
 // session — no rendering view needed, just the raw ARSession + blend shapes.
 // Requires a TrueDepth camera; VisionFaceGestureDetector covers other devices.
-final class ARFaceGestureDetector: NSObject, GestureDetector, ARSessionDelegate {
+final class ARFaceGestureDetector: NSObject, GestureDetector, FaceMeasuring, ARSessionDelegate {
     var onAdvance: (() -> Void)? { didSet { processor.onAdvance = onAdvance } }
     var onGoBack: (() -> Void)? { didSet { processor.onGoBack = onGoBack } }
     var onGestureBegan: (() -> Void)? { didSet { processor.onGestureBegan = onGestureBegan } }
     var onGestureEnded: (() -> Void)? { didSet { processor.onGestureEnded = onGestureEnded } }
+    var onMeasurement: ((FaceGestureProcessor.Measurement) -> Void)? { didSet { processor.onMeasurement = onMeasurement } }
 
     private let config: FaceGestureConfig
     private let processor: FaceGestureProcessor

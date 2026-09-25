@@ -7,4 +7,10 @@ enum EntitlementManager {
     static var hasUnlimitedAccess: Bool {
         TrialManager.shared.isActive || SubscriptionStore.shared.isSubscribed
     }
+
+    /// Performance-mode auto page turning is a paid feature: an active
+    /// subscription is required, the free trial does not include it.
+    static var hasPerformanceAccess: Bool {
+        SubscriptionStore.shared.isSubscribed
+    }
 }

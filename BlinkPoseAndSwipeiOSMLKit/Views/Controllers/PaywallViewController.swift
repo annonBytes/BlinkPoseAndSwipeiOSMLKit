@@ -3,6 +3,18 @@ import UIKit
 
 final class PaywallViewController: UIViewController {
 
+    enum Reason { case general, autoTurn }
+    private let reason: Reason
+
+    init(reason: Reason = .general) {
+        self.reason = reason
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 28)
@@ -26,7 +38,7 @@ final class PaywallViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15)
         label.numberOfLines = 0
-        label.text = ["Unlimited PDF uploads".localized, "Every page-turn modality".localized, "PDF annotation & markup".localized].map { "•  " + $0 }.joined(separator: "\n")
+        label.text = ["Unlimited PDF uploads".localized, "Every page-turn modality".localized, "PDF annotation & markup".localized, "Performance mode with automatic page turning".localized].map { "•  " + $0 }.joined(separator: "\n")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -59,7 +71,10 @@ final class PaywallViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeTapped))
 
-        if TrialManager.shared.isActive {
+        if reason == .autoTurn {
+            titleLabel.text = "Auto Turn is a Premium feature".localized
+            messageLabel.text = "Subscribe to let PageTurn turn your pages while you perform. Auto Turn is included with Premium.".localized
+        } else if TrialManager.shared.isActive {
             titleLabel.text = String.localizedStringWithFormat(NSLocalizedString("trial_days_left_title", comment: ""), TrialManager.shared.daysRemaining)
             messageLabel.text = "Subscribe now to keep unlimited uploads after your free trial ends.".localized
         } else {

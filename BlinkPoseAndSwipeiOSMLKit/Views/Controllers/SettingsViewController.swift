@@ -13,11 +13,15 @@ final class SettingsViewController: UIViewController {
     private let currentMethod: ModalityKind?
     private let onMethodChanged: ((ModalityKind) -> Void)?
     private let onTrackingChanged: (() -> Void)?
+    private let onDismiss: (() -> Void)?
+    private let onWillCalibrate: (() -> Void)?
 
     private let stack = UIStackView()
     private lazy var speedValueLabel = makeLabel(text: "", size: 16, color: .label)
 
-    init(currentMethod: ModalityKind? = nil, onMethodChanged: ((ModalityKind) -> Void)? = nil, onTrackingChanged: (() -> Void)? = nil) {
+    init(currentMethod: ModalityKind? = nil, onMethodChanged: ((ModalityKind) -> Void)? = nil, onTrackingChanged: (() -> Void)? = nil, onDismiss: (() -> Void)? = nil, onWillCalibrate: (() -> Void)? = nil) {
+        self.onDismiss = onDismiss
+        self.onWillCalibrate = onWillCalibrate
         self.currentMethod = currentMethod
         self.onMethodChanged = onMethodChanged
         self.onTrackingChanged = onTrackingChanged
@@ -79,11 +83,19 @@ final class SettingsViewController: UIViewController {
         addCard([row(title: "Invert controls".localized, trailing: invert)],
                 footer: "Off: gesture right to go to the next page, left to go back. On: the opposite.".localized)
 
-        addHeader("Turn Threshold".localized)
-        addCard([
-            sliderRow(title: "Left".localized, value: settings.leftSensitivity, range: 0...1) { [weak self] in self?.settings.leftSensitivity = $0 },
-            sliderRow(title: "Right".localized, value: settings.rightSensitivity, range: 0...1) { [weak self] in self?.settings.rightSensitivity = $0 },
-        ], footer: "Adjust the level of gesture required to turn pages. Lower if pages are hard to change, increase if they change too easily.".localized)
+        addHeader("Gestures".localized)
+        var calibrate = UIButton.Configuration.plain()
+        calibrate.title = "Calibrate & test gestures".localized
+        calibrate.image = UIImage(systemName: "slider.horizontal.3")
+        calibrate.imagePadding = 8
+        calibrate.contentInsets = .zero
+        let calibrateButton = UIButton(configuration: calibrate, primaryAction: UIAction { [weak self] _ in
+            guard let self else { return }
+            self.onWillCalibrate?()
+            self.navigationController?.pushViewController(GestureCalibrationViewController(method: self.currentMethod ?? .wink), animated: true)
+        })
+        calibrateButton.contentHorizontalAlignment = .leading
+        addCard([calibrateButton], footer: "Not everyone winks the same way. Try each gesture live and tune it to match yours.".localized)
 
         addHeader("Speed".localized)
         let speedRow = sliderRow(title: nil, value: Float(settings.turnInterval), range: 0.1...1.0, trailingLabel: speedValueLabel) { [weak self] in
@@ -180,6 +192,11 @@ final class SettingsViewController: UIViewController {
         label.textColor = color
         label.numberOfLines = 0
         return label
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if navigationController?.isBeingDismissed == true || isBeingDismissed { onDismiss?() }
     }
 
     @objc private func doneTapped() {

@@ -14,3 +14,9 @@ protocol GestureDetector: AnyObject {
 protocol HardwareKeyHandling: AnyObject {
     func handleKeyPress(_ key: UIKey)
 }
+
+// Face detectors can report live coefficients so a calibration screen can show
+// the user what the camera is seeing.
+protocol FaceMeasuring: AnyObject {
+    var onMeasurement: ((FaceGestureProcessor.Measurement) -> Void)? { get set }
+}

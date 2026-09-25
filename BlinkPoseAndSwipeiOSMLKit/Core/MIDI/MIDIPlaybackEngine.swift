@@ -20,9 +20,15 @@ final class MIDIPlaybackEngine {
         currentBeat >= lengthInBeats
     }
 
-    init(midiURL: URL) throws {
+    /// When silent the sequencer still runs as a clock but makes no sound, and
+    /// the audio session mixes with other audio instead of taking it over.
+    private let silent: Bool
+
+    init(midiURL: URL, silent: Bool = false) throws {
+        self.silent = silent
         engine.attach(sampler)
         engine.connect(sampler, to: engine.mainMixerNode, format: nil)
+        engine.mainMixerNode.outputVolume = silent ? 0 : 1
 
         sequencer = AVAudioSequencer(audioEngine: engine)
         try sequencer.load(from: midiURL, options: [])
@@ -33,7 +39,7 @@ final class MIDIPlaybackEngine {
     }
 
     func start() throws {
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        try? AVAudioSession.sharedInstance().setCategory(silent ? .ambient : .playback, mode: .default)
         try? AVAudioSession.sharedInstance().setActive(true)
 
         if !engine.isRunning { try engine.start() }

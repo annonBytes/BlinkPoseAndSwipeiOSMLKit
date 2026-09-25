@@ -16,6 +16,7 @@
 		1E03B15323DB7CCF0081F923 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E03B15223DB7CCF0081F923 /* Assets.xcassets */; };
 		1E03B15623DB7CCF0081F923 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E03B15423DB7CCF0081F923 /* LaunchScreen.storyboard */; };
 		280EBC7DFBB5F11EFB82271B /* FaceGestureConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E910EFA30830C5DC8D7898 /* FaceGestureConfig.swift */; };
+		288E44E4E4E98A797A5179B2 /* GestureCalibrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26977A199F8000C765129D27 /* GestureCalibrationViewController.swift */; };
 		29962997D406AF8E527B56E9 /* GestureSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4310D8C777A54C1C737CB8 /* GestureSettings.swift */; };
 		3F77822476E9B7F4741DE874 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3B5F75F70F1462FD1F6CC /* Score.swift */; };
 		45BAF840B96EC79C1A4CD1D0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8833D23FAE7875C6B963B460 /* PrivacyInfo.xcprivacy */; };
@@ -64,6 +65,7 @@
 		1E03B15523DB7CCF0081F923 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E03B15723DB7CCF0081F923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25391496830012A5F1AB8DCD /* es */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		26977A199F8000C765129D27 /* GestureCalibrationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GestureCalibrationViewController.swift; sourceTree = "<group>"; };
 		276105796F796C064971C3A9 /* GestureDetector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GestureDetector.swift; sourceTree = "<group>"; };
 		2966FE7C571AEAA3B4623E02 /* Localization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		2DEDF72B6CC688FDC8F3B313 /* ScoreViewerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreViewerViewController.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				811EE843FDEFBE7745F84F94 /* MetronomeViewController.swift */,
 				670A5620EFE42DAFB39B5226 /* SettingsViewController.swift */,
 				C47312D1CE57BFE85942B7AE /* OnboardingViewController.swift */,
+				26977A199F8000C765129D27 /* GestureCalibrationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				C38CCFFC3D9D7C6909F795B2 /* OnboardingViewController.swift in Sources */,
 				D93E9B6DAFD564B7A6874F51 /* MIDIPlaybackEngine.swift in Sources */,
 				57087E06FB6729C09FAA6BE3 /* MIDIPageTurnController.swift in Sources */,
+				288E44E4E4E98A797A5179B2 /* GestureCalibrationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

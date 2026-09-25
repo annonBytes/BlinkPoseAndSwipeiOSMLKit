@@ -35,6 +35,24 @@ enum ModalityKind: String, Codable, CaseIterable {
 
     // ARKit (TrueDepth) when available; otherwise — or when the user forces
     // it in Settings — the less accurate Vision-based fallback.
+    /// Wink, head tilt, and mouth movement are visible to an audience, so
+    /// Performance mode only offers the unobtrusive modalities.
+    var isPerformanceSafe: Bool {
+        switch self {
+        case .tap, .swipe, .hardwareKey: return true
+        case .wink, .headTilt, .mouthMove: return false
+        }
+    }
+
+    var faceConfig: FaceGestureConfig? {
+        switch self {
+        case .wink: return .wink
+        case .headTilt: return .headTilt
+        case .mouthMove: return .mouthMove
+        default: return nil
+        }
+    }
+
     static var usesAdvancedFaceTracking: Bool {
         ARFaceTrackingConfiguration.isSupported && !GestureSettings.shared.forceFallbackTracking
     }

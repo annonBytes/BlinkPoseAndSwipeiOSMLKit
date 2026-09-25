@@ -29,9 +29,9 @@ final class MIDIPageTurnController {
         timer?.invalidate()
     }
 
-    func startPlaying(midiURL: URL, marks: [PageMark]) throws {
+    func startPlaying(midiURL: URL, marks: [PageMark], silent: Bool = false) throws {
         stop()
-        let engine = try MIDIPlaybackEngine(midiURL: midiURL)
+        let engine = try MIDIPlaybackEngine(midiURL: midiURL, silent: silent)
         self.engine = engine
         self.marks = marks.sorted { $0.beat < $1.beat }
 

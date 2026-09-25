@@ -25,6 +25,14 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
     private let documentURL: URL
     private var detector: GestureDetector
     private var currentModality: ModalityKind
+
+    // Practice = everything available. Performance = only unobtrusive
+    // modalities, fewer controls, screen kept awake, and paid auto-turn.
+    private enum PlayMode { case practice, performance }
+    private var playMode: PlayMode = .practice
+    private var stashedModality: ModalityKind?
+    private var countdownTimer: Timer?
+    private var isCountingDown = false
     private let onModalityChanged: ((ModalityKind) -> Void)?
 
     // MIDI auto page turning — only for scores that live in the library.
@@ -190,31 +198,67 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
         super.viewWillAppear(animated)
         detector.start()
         becomeFirstResponder()
+        UIApplication.shared.isIdleTimerDisabled = playMode == .performance
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         detector.stop()
-        midiController.stop()
+        cancelAutoTurn()
+        UIApplication.shared.isIdleTimerDisabled = false
         saveAnnotations()
     }
 
-    func setModality(_ newModality: ModalityKind) {
+    func setModality(_ newModality: ModalityKind, persist: Bool = true) {
         currentModality = newModality
         detector.stop()
         installDetector(newModality.makeDetector())
         detector.start()
         modalityButton.menu = makeModalityMenu()
-        onModalityChanged?(newModality)
+        if persist { onModalityChanged?(newModality) }
     }
 
     private func makeModalityMenu() -> UIMenu {
-        let actions = ModalityKind.allCases.map { kind in
+        let modeSection = UIMenu(options: .displayInline, children: [
+            UIAction(title: "Practice".localized, image: UIImage(systemName: "music.note"), state: playMode == .practice ? .on : .off) { [weak self] _ in
+                self?.setPlayMode(.practice)
+            },
+            UIAction(title: "Performance".localized, image: UIImage(systemName: "theatermasks"), state: playMode == .performance ? .on : .off) { [weak self] _ in
+                self?.setPlayMode(.performance)
+            },
+        ])
+        let kinds = ModalityKind.allCases.filter { playMode == .practice || $0.isPerformanceSafe }
+        let actions = kinds.map { kind in
             UIAction(title: kind.displayName, state: kind == currentModality ? .on : .off) { [weak self] _ in
                 self?.setModality(kind)
             }
         }
-        return UIMenu(title: "Page-Turn Modality".localized, children: actions)
+        return UIMenu(title: "Page-Turn Modality".localized, children: [modeSection] + actions)
+    }
+
+    private func setPlayMode(_ mode: PlayMode) {
+        guard mode != playMode else { return }
+        playMode = mode
+
+        if mode == .performance {
+            if isAnnotating { isAnnotating = false }
+            if !currentModality.isPerformanceSafe {
+                stashedModality = currentModality
+                setModality(.tap, persist: false)
+            }
+        } else {
+            cancelAutoTurn()
+            if let stashed = stashedModality {
+                stashedModality = nil
+                setModality(stashed, persist: false)
+            }
+        }
+
+        navigationItem.rightBarButtonItems = mode == .performance ? [modalityButton] : [annotateButton, modalityButton, settingsButton]
+        modalityButton.image = UIImage(systemName: mode == .performance ? "theatermasks.fill" : "arrow.triangle.swap")
+        modalityButton.menu = makeModalityMenu()
+        midiButton.menu = makeMIDIMenu()
+        UIApplication.shared.isIdleTimerDisabled = mode == .performance
     }
 
     private func installDetector(_ newDetector: GestureDetector) {
@@ -305,7 +349,13 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
         }, onTrackingChanged: { [weak self] in
             guard let self else { return }
             self.setModality(self.currentModality)
+        }, onDismiss: { [weak self] in
+            self?.detector.start()
+        }, onWillCalibrate: { [weak self] in
+            self?.detector.stop()
         })
+        // The calibration screen needs the camera to itself.
+        detector.stop()
         present(UINavigationController(rootViewController: settings), animated: true)
     }
 
@@ -372,6 +422,7 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
 
     private func makeMIDIMenu() -> UIMenu {
         guard let score = currentScore else { return UIMenu() }
+        if playMode == .performance { return makeAutoTurnMenu(for: score) }
         var items: [UIMenuElement] = []
 
         if midiController.mode != .idle {
@@ -402,6 +453,65 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
             })
         }
         return UIMenu(title: "MIDI".localized, children: items)
+    }
+
+    private func makeAutoTurnMenu(for score: Score) -> UIMenu {
+        var items: [UIMenuElement] = []
+        if isCountingDown || midiController.mode != .idle {
+            items.append(UIAction(title: "Stop".localized, image: UIImage(systemName: "stop.fill"), attributes: .destructive) { [weak self] _ in
+                self?.cancelAutoTurn()
+            })
+        } else if let midiURL = library.midiURL(for: score), let marks = score.pageMarks, !marks.isEmpty {
+            items.append(UIAction(title: "Start Auto Turn".localized, image: UIImage(systemName: "play.circle")) { [weak self] _ in
+                self?.startAutoTurn(midiURL: midiURL, marks: marks)
+            })
+        } else {
+            items.append(UIAction(title: "Record page turns in Practice mode first".localized, attributes: .disabled) { _ in })
+        }
+        return UIMenu(title: "Auto Turn".localized, children: items)
+    }
+
+    // Auto Turn is a paid feature. A short count-in gives the player time to
+    // start playing, because the recorded page turns are relative to beat 0.
+    private func startAutoTurn(midiURL: URL, marks: [PageMark]) {
+        guard EntitlementManager.hasPerformanceAccess else {
+            present(UINavigationController(rootViewController: PaywallViewController(reason: .autoTurn)), animated: true)
+            return
+        }
+
+        var remaining = 3
+        isCountingDown = true
+        midiStatusLabel.text = "Starting in %d…".localized(remaining)
+        midiStatusLabel.isHidden = false
+        midiButton.menu = makeMIDIMenu()
+
+        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+            guard let self else { timer.invalidate(); return }
+            remaining -= 1
+            if remaining > 0 {
+                self.midiStatusLabel.text = "Starting in %d…".localized(remaining)
+                return
+            }
+            timer.invalidate()
+            self.countdownTimer = nil
+            self.isCountingDown = false
+            do {
+                try self.midiController.startPlaying(midiURL: midiURL, marks: marks, silent: true)
+            } catch {
+                self.midiStatusLabel.isHidden = true
+                self.midiButton.menu = self.makeMIDIMenu()
+                self.presentMIDIMessage(title: "Couldn't Play MIDI File".localized, message: error.localizedDescription)
+            }
+        }
+    }
+
+    fileprivate func cancelAutoTurn() {
+        countdownTimer?.invalidate()
+        countdownTimer = nil
+        isCountingDown = false
+        midiController.stop()
+        midiStatusLabel.isHidden = true
+        midiButton.menu = makeMIDIMenu()
     }
 
     private func presentMIDIPicker() {

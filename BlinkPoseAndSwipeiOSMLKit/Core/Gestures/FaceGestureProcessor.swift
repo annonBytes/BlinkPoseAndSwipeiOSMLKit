@@ -10,6 +10,16 @@ final class FaceGestureProcessor {
     var onGestureBegan: (() -> Void)?
     var onGestureEnded: (() -> Void)?
 
+    /// A live reading for the calibration screen: the raw coefficients and the
+    /// threshold each side currently has to reach.
+    struct Measurement {
+        let advance: Float
+        let goBack: Float
+        let advanceThreshold: Float
+        let goBackThreshold: Float
+    }
+    var onMeasurement: ((Measurement) -> Void)?
+
     private let config: FaceGestureConfig
 
     private enum ActivationState { case idle, active }
@@ -28,7 +38,7 @@ final class FaceGestureProcessor {
             case .idle:
                 advanceInterval.end = Date()
                 onGestureEnded?()
-                if advanceInterval.duration >= config.holdTimeThreshold {
+                if advanceInterval.duration >= holdTime {
                     fire(.advance)
                 }
             }
@@ -46,7 +56,7 @@ final class FaceGestureProcessor {
             case .idle:
                 goBackInterval.end = Date()
                 onGestureEnded?()
-                if goBackInterval.duration >= config.holdTimeThreshold {
+                if goBackInterval.duration >= holdTime {
                     fire(.goBack)
                 }
             }
@@ -59,8 +69,11 @@ final class FaceGestureProcessor {
 
     /// Must be called on the main thread.
     func process(advanceCoefficient: Float, goBackCoefficient: Float) {
-        let rightThreshold = threshold(forSensitivity: GestureSettings.shared.rightSensitivity)
-        let leftThreshold = threshold(forSensitivity: GestureSettings.shared.leftSensitivity)
+        let profile = GestureSettings.shared.profile(for: config.name)
+        let rightThreshold = threshold(forSensitivity: profile.rightSensitivity)
+        let leftThreshold = threshold(forSensitivity: profile.leftSensitivity)
+        onMeasurement?(Measurement(advance: advanceCoefficient, goBack: goBackCoefficient,
+                                   advanceThreshold: rightThreshold, goBackThreshold: leftThreshold))
 
         if advanceCoefficient >= rightThreshold && goBackCoefficient >= leftThreshold {
             return
@@ -79,6 +92,10 @@ final class FaceGestureProcessor {
         case (.advance, false), (.goBack, true): onAdvance?()
         case (.goBack, false), (.advance, true): onGoBack?()
         }
+    }
+
+    private var holdTime: TimeInterval {
+        GestureSettings.shared.profile(for: config.name).holdTime ?? config.holdTimeThreshold
     }
 
     private func threshold(forSensitivity sensitivity: Float) -> Float {

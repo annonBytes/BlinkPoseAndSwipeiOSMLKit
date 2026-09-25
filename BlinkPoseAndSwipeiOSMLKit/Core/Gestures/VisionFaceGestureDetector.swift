@@ -5,11 +5,12 @@ import Vision
 // Fallback for devices without a TrueDepth camera (or when the user forces
 // it in Settings): front-camera frames run through Vision face landmarks.
 // Less accurate than ARFaceGestureDetector, but works on any device.
-final class VisionFaceGestureDetector: NSObject, GestureDetector, AVCaptureVideoDataOutputSampleBufferDelegate {
+final class VisionFaceGestureDetector: NSObject, GestureDetector, FaceMeasuring, AVCaptureVideoDataOutputSampleBufferDelegate {
     var onAdvance: (() -> Void)? { didSet { processor.onAdvance = onAdvance } }
     var onGoBack: (() -> Void)? { didSet { processor.onGoBack = onGoBack } }
     var onGestureBegan: (() -> Void)? { didSet { processor.onGestureBegan = onGestureBegan } }
     var onGestureEnded: (() -> Void)? { didSet { processor.onGestureEnded = onGestureEnded } }
+    var onMeasurement: ((FaceGestureProcessor.Measurement) -> Void)? { didSet { processor.onMeasurement = onMeasurement } }
 
     private let config: FaceGestureConfig
     private let processor: FaceGestureProcessor
