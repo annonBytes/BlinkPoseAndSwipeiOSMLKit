@@ -1,5 +1,7 @@
+import PhotosUI
 import UIKit
 import UniformTypeIdentifiers
+import VisionKit
 
 // The app's root screen: the user's uploaded scores as a data-driven grid.
 // First launch presents the one-time onboarding walkthrough.
@@ -52,7 +54,7 @@ final class LibraryViewController: UIViewController {
         title = "Library".localized
         navigationController?.navigationBar.prefersLargeTitles = true
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), menu: makeAddMenu())
         addButton.accessibilityLabel = "Add PDF".localized
         let metronomeButton = UIBarButtonItem(image: UIImage(systemName: "metronome"), style: .plain, target: self, action: #selector(showMetronome))
         metronomeButton.accessibilityLabel = "Metronome".localized
@@ -118,16 +120,59 @@ final class LibraryViewController: UIViewController {
         statusBanner.configuration = config
     }
 
-    @objc private func addTapped() {
-        guard EntitlementManager.hasUnlimitedAccess else {
-            presentPaywall()
-            return
-        }
+    private func makeAddMenu() -> UIMenu {
+        let scanSupported = VNDocumentCameraViewController.isSupported
+        return UIMenu(children: [
+            UIAction(title: "Import PDF".localized, image: UIImage(systemName: "doc.badge.plus")) { [weak self] _ in self?.importPDFTapped() },
+            UIAction(title: "Scan with Camera".localized, image: UIImage(systemName: "doc.viewfinder"),
+                     attributes: scanSupported ? [] : .disabled) { [weak self] _ in self?.scanTapped() },
+            UIAction(title: "Photos to PDF".localized, image: UIImage(systemName: "photo.on.rectangle")) { [weak self] _ in self?.photosTapped() },
+        ])
+    }
+
+    private func importPDFTapped() {
+        guard EntitlementManager.hasUnlimitedAccess else { return presentPaywall() }
         let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.pdf])
         picker.delegate = self
         picker.allowsMultipleSelection = true
         present(picker, animated: true)
     }
+
+    private func scanTapped() {
+        guard EntitlementManager.hasUnlimitedAccess else { return presentPaywall() }
+        let scanner = VNDocumentCameraViewController()
+        scanner.delegate = self
+        present(scanner, animated: true)
+    }
+
+    private func photosTapped() {
+        guard EntitlementManager.hasUnlimitedAccess else { return presentPaywall() }
+        var config = PHPickerConfiguration()
+        config.filter = .images
+        config.selectionLimit = 0
+        config.selection = .ordered
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+
+    private func importImages(_ images: [UIImage], titlePrefix: String) {
+        do {
+            try library.importImages(images, title: "\(titlePrefix) \(Self.scanDateFormatter.string(from: Date()))")
+            refresh()
+        } catch {
+            let alert = UIAlertController(title: "Couldn't Add PDF".localized, message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK".localized, style: .default))
+            present(alert, animated: true)
+        }
+    }
+
+    private static let scanDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter
+    }()
 
     private func presentPaywall() {
         let paywall = PaywallViewController()
@@ -239,5 +284,43 @@ extension LibraryViewController: UIDocumentPickerDelegate {
             }
         }
         refresh()
+    }
+}
+
+extension LibraryViewController: VNDocumentCameraViewControllerDelegate {
+    func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
+        let images = (0..<scan.pageCount).map { scan.imageOfPage(at: $0) }
+        controller.dismiss(animated: true) { [weak self] in
+            self?.importImages(images, titlePrefix: "Scan".localized)
+        }
+    }
+
+    func documentCameraViewControllerDidCancel(_ controller: VNDocumentCameraViewController) {
+        controller.dismiss(animated: true)
+    }
+
+    func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFailWithError error: Error) {
+        controller.dismiss(animated: true)
+    }
+}
+
+extension LibraryViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        guard !results.isEmpty else { return }
+
+        // Load in the order picked; providers finish asynchronously.
+        var images = [UIImage?](repeating: nil, count: results.count)
+        let group = DispatchGroup()
+        for (index, result) in results.enumerated() where result.itemProvider.canLoadObject(ofClass: UIImage.self) {
+            group.enter()
+            result.itemProvider.loadObject(ofClass: UIImage.self) { object, _ in
+                images[index] = object as? UIImage
+                group.leave()
+            }
+        }
+        group.notify(queue: .main) { [weak self] in
+            self?.importImages(images.compactMap { $0 }, titlePrefix: "Photos".localized)
+        }
     }
 }

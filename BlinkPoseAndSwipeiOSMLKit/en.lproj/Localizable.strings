@@ -147,3 +147,9 @@
 "Faster" = "Faster";
 "Repeating page %d" = "Repeating page %d";
 "Looping pages %d–%d" = "Looping pages %d–%d";
+
+"Import PDF" = "Import PDF";
+"Scan with Camera" = "Scan with Camera";
+"Photos to PDF" = "Photos to PDF";
+"Scan" = "Scan";
+"Photos" = "Photos";

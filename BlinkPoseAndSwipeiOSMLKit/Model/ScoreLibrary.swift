@@ -72,6 +72,27 @@ final class ScoreLibrary {
         return score
     }
 
+    /// Builds a PDF from scanned or photographed pages (one image per page)
+    /// and adds it to the library.
+    @discardableResult
+    func importImages(_ images: [UIImage], title: String) throws -> Score {
+        let document = PDFDocument()
+        for image in images {
+            guard let page = PDFPage(image: image) else { continue }
+            document.insert(page, at: document.pageCount)
+        }
+        guard document.pageCount > 0 else { throw CocoaError(.fileReadCorruptFile) }
+
+        let id = UUID()
+        let fileName = "\(id.uuidString).pdf"
+        guard document.write(to: scoresDirectory.appendingPathComponent(fileName)) else { throw CocoaError(.fileWriteUnknown) }
+
+        let score = Score(id: id, title: title, fileName: fileName)
+        scores.append(score)
+        save()
+        return score
+    }
+
     func score(withID id: UUID) -> Score? {
         scores.first { $0.id == id }
     }

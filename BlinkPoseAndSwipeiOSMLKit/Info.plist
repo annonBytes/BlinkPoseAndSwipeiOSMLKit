@@ -25,7 +25,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Used for wink, head-tilt, and mouth-move page-turning gestures.</string>
+	<string>Used for wink, head-tilt, and mouth-move page-turning gestures, and to scan sheet music into PDFs. Camera images never leave your device.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
