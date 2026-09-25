@@ -59,6 +59,31 @@ final class PaywallViewController: UIViewController {
         return button
     }()
 
+    private let legalLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Payment is charged to your Apple ID at confirmation. The subscription renews monthly unless cancelled at least 24 hours before the end of the current period. Manage or cancel in Settings › Apple ID › Subscriptions.".localized
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = .secondaryLabel
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private lazy var linksRow: UIStackView = {
+        func link(_ title: String, _ url: URL) -> UIButton {
+            let button = UIButton(type: .system, primaryAction: UIAction { _ in UIApplication.shared.open(url) })
+            button.setTitle(title, for: .normal)
+            button.titleLabel?.font = .systemFont(ofSize: 13)
+            return button
+        }
+        let row = UIStackView(arrangedSubviews: [link("Terms of Use".localized, LegalLinks.termsOfUse), link("Privacy Policy".localized, LegalLinks.privacyPolicy)])
+        row.axis = .horizontal
+        row.spacing = 24
+        row.translatesAutoresizingMaskIntoConstraints = false
+        return row
+    }()
+
     private let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .medium)
         indicator.hidesWhenStopped = true
@@ -87,7 +112,7 @@ final class PaywallViewController: UIViewController {
     }
 
     private func setUpViews() {
-        [titleLabel, messageLabel, featuresLabel, subscribeButton, restoreButton, activityIndicator].forEach { view.addSubview($0) }
+        [titleLabel, messageLabel, featuresLabel, subscribeButton, restoreButton, activityIndicator, legalLabel, linksRow].forEach { view.addSubview($0) }
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -111,6 +136,12 @@ final class PaywallViewController: UIViewController {
 
             restoreButton.topAnchor.constraint(equalTo: activityIndicator.bottomAnchor, constant: 8),
             restoreButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            linksRow.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            linksRow.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12),
+            legalLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            legalLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            legalLabel.bottomAnchor.constraint(equalTo: linksRow.topAnchor, constant: -8),
         ])
     }
 

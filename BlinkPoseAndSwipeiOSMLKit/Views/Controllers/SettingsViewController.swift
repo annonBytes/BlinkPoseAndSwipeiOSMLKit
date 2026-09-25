@@ -118,6 +118,21 @@ final class SettingsViewController: UIViewController {
         } else {
             addCard([makeLabel(text: "Your device doesn't support advanced face tracking, so PageTurn uses a less-accurate method with the front camera instead.".localized, size: 15, color: .label)])
         }
+
+        addLegalLinks()
+    }
+
+    private func addLegalLinks() {
+        addHeader("About".localized)
+        func link(_ title: String, _ url: URL) -> UIButton {
+            var config = UIButton.Configuration.plain()
+            config.title = title
+            config.contentInsets = .zero
+            let button = UIButton(configuration: config, primaryAction: UIAction { _ in UIApplication.shared.open(url) })
+            button.contentHorizontalAlignment = .leading
+            return button
+        }
+        addCard([link("Terms of Use".localized, LegalLinks.termsOfUse), link("Privacy Policy".localized, LegalLinks.privacyPolicy)])
     }
 
     private func updateSpeedLabel() {

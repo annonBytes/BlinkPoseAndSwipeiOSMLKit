@@ -1,6 +1,0 @@
-framework module Pods_BlinkPoseAndSwipeiOSMLKit {
-  umbrella header "Pods-BlinkPoseAndSwipeiOSMLKit-umbrella.h"
-
-  export *
-  module * { export * }
-}
