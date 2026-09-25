@@ -16,6 +16,7 @@
 		1E03B14C23DB7CC90081F923 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E03B14B23DB7CC90081F923 /* SceneDelegate.swift */; };
 		1E03B15323DB7CCF0081F923 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E03B15223DB7CCF0081F923 /* Assets.xcassets */; };
 		1E03B15623DB7CCF0081F923 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E03B15423DB7CCF0081F923 /* LaunchScreen.storyboard */; };
+		27A13CDFE0CA578B487737C2 /* AutoScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F082A2B2B77763243A49302 /* AutoScroller.swift */; };
 		280EBC7DFBB5F11EFB82271B /* FaceGestureConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E910EFA30830C5DC8D7898 /* FaceGestureConfig.swift */; };
 		288E44E4E4E98A797A5179B2 /* GestureCalibrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26977A199F8000C765129D27 /* GestureCalibrationViewController.swift */; };
 		29962997D406AF8E527B56E9 /* GestureSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4310D8C777A54C1C737CB8 /* GestureSettings.swift */; };
@@ -78,6 +79,7 @@
 		541DDD32160FB84F1C37D706 /* Configuration.storekit */ = {isa = PBXFileReference; includeInIndex = 1; path = Configuration.storekit; sourceTree = "<group>"; };
 		55EF3496E0B525C82CEA9711 /* VisionFaceMetrics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VisionFaceMetrics.swift; sourceTree = "<group>"; };
 		5A671A447ECA473262188BB0 /* de */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5F082A2B2B77763243A49302 /* AutoScroller.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AutoScroller.swift; sourceTree = "<group>"; };
 		6341CA3202010BF240356916 /* ScoreLibrary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreLibrary.swift; sourceTree = "<group>"; };
 		670A5620EFE42DAFB39B5226 /* SettingsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6DD2EE0027FDF358008D29B9 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -137,6 +139,7 @@
 				21E21DFC132C56418777B7B5 /* MIDI */,
 				4A678D6AA7B9863FEB87275F /* LegalLinks.swift */,
 				6F2EC77111ED8B7F3FE3A177 /* PageTurnAnimator.swift */,
+				5F082A2B2B77763243A49302 /* AutoScroller.swift */,
 			);
 			name = Core;
 			path = Core;
@@ -424,6 +427,7 @@
 				288E44E4E4E98A797A5179B2 /* GestureCalibrationViewController.swift in Sources */,
 				32A39E51EA764CA892293D78 /* LegalLinks.swift in Sources */,
 				17FFEB972F4B3B8259E99687 /* PageTurnAnimator.swift in Sources */,
+				27A13CDFE0CA578B487737C2 /* AutoScroller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

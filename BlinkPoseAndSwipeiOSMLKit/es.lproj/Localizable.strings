@@ -126,3 +126,24 @@
 "Choose the style, the direction the page moves, and how long a turn takes. Faster turns suit quick passages. Turned off automatically if Reduce Motion is on." = "Elige el estilo, la dirección en que se mueve la página y lo que dura el cambio. Los cambios más rápidos van bien en pasajes veloces. Se desactiva automáticamente si Reducir movimiento está activado.";
 
 "Page-turn method: %@" = "Método de cambio de página: %@";
+
+"Tools" = "Herramientas";
+"Go to Page…" = "Ir a la página…";
+"Go to Page" = "Ir a la página";
+"Enter a page number (1–%d)." = "Introduce un número de página (1–%d).";
+"Go" = "Ir";
+"Repeat" = "Repetir";
+"Stay on This Page" = "Quedarse en esta página";
+"Loop Pages…" = "Repetir páginas…";
+"Loop Pages" = "Repetir páginas";
+"From page" = "Desde la página";
+"To page" = "Hasta la página";
+"Stop Repeating" = "Dejar de repetir";
+"Auto Scroll" = "Desplazamiento automático";
+"Start Auto Scroll" = "Iniciar desplazamiento automático";
+"Stop Auto Scroll" = "Detener desplazamiento automático";
+"Scroll Speed" = "Velocidad de desplazamiento";
+"Slower" = "Más lento";
+"Faster" = "Más rápido";
+"Repeating page %d" = "Repitiendo la página %d";
+"Looping pages %d–%d" = "Repitiendo las páginas %d–%d";

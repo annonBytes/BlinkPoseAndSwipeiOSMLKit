@@ -20,6 +20,9 @@ final class FaceGestureProcessor {
     }
     var onMeasurement: ((Measurement) -> Void)?
 
+    /// How much stronger the intended side must be than the opposite one.
+    static let dominanceMargin: Float = 0.25
+
     private let config: FaceGestureConfig
 
     private enum ActivationState { case idle, active }
@@ -75,11 +78,14 @@ final class FaceGestureProcessor {
         onMeasurement?(Measurement(advance: advanceCoefficient, goBack: goBackCoefficient,
                                    advanceThreshold: rightThreshold, goBackThreshold: leftThreshold))
 
-        if advanceCoefficient >= rightThreshold && goBackCoefficient >= leftThreshold {
-            return
-        }
-        advanceState = advanceCoefficient >= rightThreshold ? .active : .idle
-        goBackState = goBackCoefficient >= leftThreshold ? .active : .idle
+        // One side has to clearly dominate. This is what tells a wink from a
+        // blink: a natural blink closes both eyes, and even a wink partly
+        // closes the other one, so requiring a margin over the opposite side
+        // ignores blinks (and one eye lagging a frame behind the other).
+        let advanceDominates = advanceCoefficient - goBackCoefficient >= Self.dominanceMargin
+        let goBackDominates = goBackCoefficient - advanceCoefficient >= Self.dominanceMargin
+        advanceState = advanceCoefficient >= rightThreshold && advanceDominates ? .active : .idle
+        goBackState = goBackCoefficient >= leftThreshold && goBackDominates ? .active : .idle
     }
 
     private func fire(_ action: Action) {

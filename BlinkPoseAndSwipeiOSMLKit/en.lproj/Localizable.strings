@@ -126,3 +126,24 @@
 "Choose the style, the direction the page moves, and how long a turn takes. Faster turns suit quick passages. Turned off automatically if Reduce Motion is on." = "Choose the style, the direction the page moves, and how long a turn takes. Faster turns suit quick passages. Turned off automatically if Reduce Motion is on.";
 
 "Page-turn method: %@" = "Page-turn method: %@";
+
+"Tools" = "Tools";
+"Go to Page…" = "Go to Page…";
+"Go to Page" = "Go to Page";
+"Enter a page number (1–%d)." = "Enter a page number (1–%d).";
+"Go" = "Go";
+"Repeat" = "Repeat";
+"Stay on This Page" = "Stay on This Page";
+"Loop Pages…" = "Loop Pages…";
+"Loop Pages" = "Loop Pages";
+"From page" = "From page";
+"To page" = "To page";
+"Stop Repeating" = "Stop Repeating";
+"Auto Scroll" = "Auto Scroll";
+"Start Auto Scroll" = "Start Auto Scroll";
+"Stop Auto Scroll" = "Stop Auto Scroll";
+"Scroll Speed" = "Scroll Speed";
+"Slower" = "Slower";
+"Faster" = "Faster";
+"Repeating page %d" = "Repeating page %d";
+"Looping pages %d–%d" = "Looping pages %d–%d";

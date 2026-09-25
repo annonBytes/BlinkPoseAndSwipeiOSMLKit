@@ -43,6 +43,40 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
     private let library = ScoreLibrary.shared
     private lazy var midiController = MIDIPageTurnController(pdfView: pdfView)
     private lazy var pageAnimator = PageTurnAnimator(pdfView: pdfView)
+    private lazy var autoScroller: AutoScroller = {
+        let scroller = AutoScroller(pdfView: pdfView)
+        scroller.onFinished = { [weak self] in self?.autoScrollFinished() }
+        return scroller
+    }()
+
+    /// Zero-based inclusive page range the player is repeating; a single page
+    /// means "stay on this page". Turns wrap inside the range.
+    private var repeatRange: ClosedRange<Int>? {
+        didSet { toolsButton.menu = makeToolsMenu(); updateRepeatBadge() }
+    }
+
+    private lazy var toolsButton: UIButton = {
+        var config = UIButton.Configuration.filled()
+        config.image = UIImage(systemName: "ellipsis")
+        config.cornerStyle = .capsule
+        config.baseBackgroundColor = .secondarySystemBackground
+        config.baseForegroundColor = Theme.accent
+        let button = UIButton(configuration: config)
+        button.showsMenuAsPrimaryAction = true
+        button.accessibilityLabel = "Tools".localized
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        return button
+    }()
+
+    private let repeatLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 13, weight: .semibold)
+        label.textColor = Theme.accent
+        label.isHidden = true
+        return label
+    }()
 
     private var currentScore: Score? {
         scoreID.flatMap { library.score(withID: $0) }
@@ -191,6 +225,7 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
         setUpAnnotationOverlay()
         updateToolButtonStates()
         setUpMIDI()
+        setUpTools()
 
         NotificationCenter.default.addObserver(self, selector: #selector(updatePageTitle), name: .PDFViewPageChanged, object: pdfView)
         updatePageTitle()
@@ -219,6 +254,7 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
         super.viewWillDisappear(animated)
         detector.stop()
         cancelAutoTurn()
+        autoScroller.stop()
         UIApplication.shared.isIdleTimerDisabled = false
         saveAnnotations()
     }
@@ -286,9 +322,31 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
     }
 
     private func turnPage(forward: Bool) {
+        guard let document = pdfView.document, let current = pdfView.currentPage else { return }
+        let index = document.index(for: current)
+
+        if let range = repeatRange {
+            if range.count == 1 { feedbackView.showActive(); feedbackView.showIdle(); return }   // stay put
+            let target = forward ? (index >= range.upperBound ? range.lowerBound : index + 1)
+                                 : (index <= range.lowerBound ? range.upperBound : index - 1)
+            turnPage(toIndex: target, forward: forward)
+            return
+        }
+
+        if autoScroller.isRunning {
+            if forward { pdfView.goToNextPage(nil) } else { pdfView.goToPreviousPage(nil) }
+            return
+        }
+
         pageAnimator.turn(forward: forward) {
             if forward { pdfView.goToNextPage(nil) } else { pdfView.goToPreviousPage(nil) }
         }
+    }
+
+    private func turnPage(toIndex index: Int, forward: Bool) {
+        guard let page = pdfView.document?.page(at: index) else { return }
+        if autoScroller.isRunning { pdfView.go(to: page); return }
+        pageAnimator.turn(forward: forward) { pdfView.go(to: page) }
     }
 
     // Used by MIDI auto-turn: jumps to a page, animating in the direction of travel.
@@ -411,6 +469,119 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
 // MARK: - MIDI auto page turning
 
 extension ScoreViewerViewController: UIDocumentPickerDelegate {
+    // MARK: - Tools (go to page, repeat, auto scroll)
+
+    private func setUpTools() {
+        let stack = UIStackView(arrangedSubviews: [repeatLabel, toolsButton])
+        stack.axis = .horizontal
+        stack.spacing = 8
+        stack.alignment = .center
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            stack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -76),
+        ])
+        toolsButton.menu = makeToolsMenu()
+    }
+
+    private var pageCount: Int { pdfView.document?.pageCount ?? 0 }
+
+    private var currentPageIndex: Int {
+        guard let document = pdfView.document, let page = pdfView.currentPage else { return 0 }
+        return document.index(for: page)
+    }
+
+    private func makeToolsMenu() -> UIMenu {
+        let goTo = UIAction(title: "Go to Page…".localized, image: UIImage(systemName: "arrow.right.to.line")) { [weak self] _ in self?.promptGoToPage() }
+
+        var repeatItems: [UIMenuElement] = []
+        if repeatRange != nil {
+            repeatItems.append(UIAction(title: "Stop Repeating".localized, image: UIImage(systemName: "stop.fill"), attributes: .destructive) { [weak self] _ in self?.repeatRange = nil })
+        } else {
+            repeatItems.append(UIAction(title: "Stay on This Page".localized, image: UIImage(systemName: "repeat.1")) { [weak self] _ in
+                guard let self else { return }
+                self.repeatRange = self.currentPageIndex...self.currentPageIndex
+            })
+            repeatItems.append(UIAction(title: "Loop Pages…".localized, image: UIImage(systemName: "repeat")) { [weak self] _ in self?.promptLoopPages() })
+        }
+        let repeatMenu = UIMenu(title: "Repeat".localized, options: .displayInline, children: repeatItems)
+
+        var scrollItems: [UIMenuElement] = []
+        if autoScroller.isRunning {
+            scrollItems.append(UIAction(title: "Stop Auto Scroll".localized, image: UIImage(systemName: "stop.fill"), attributes: .destructive) { [weak self] _ in self?.setAutoScroll(false) })
+        } else {
+            scrollItems.append(UIAction(title: "Start Auto Scroll".localized, image: UIImage(systemName: "arrow.down.to.line")) { [weak self] _ in self?.setAutoScroll(true) })
+        }
+        let speeds: [(String, Double)] = [("Slower".localized, -10), ("Faster".localized, 10)]
+        scrollItems.append(UIMenu(title: "Scroll Speed".localized + " (\(Int(AutoScroller.speed)))", image: UIImage(systemName: "speedometer"), children: speeds.map { name, delta in
+            UIAction(title: name, image: UIImage(systemName: delta < 0 ? "minus" : "plus")) { [weak self] _ in
+                AutoScroller.speed += delta
+                self?.toolsButton.menu = self?.makeToolsMenu()
+            }
+        }))
+        let scrollMenu = UIMenu(title: "Auto Scroll".localized, options: .displayInline, children: scrollItems)
+
+        return UIMenu(title: "Tools".localized, children: [goTo, repeatMenu, scrollMenu])
+    }
+
+    private func setAutoScroll(_ on: Bool) {
+        if on {
+            repeatRange = nil
+            autoScroller.start()
+        } else {
+            autoScroller.stop()
+        }
+        toolsButton.menu = makeToolsMenu()
+        updateRepeatBadge()
+    }
+
+    private func autoScrollFinished() {
+        autoScroller.stop()
+        toolsButton.menu = makeToolsMenu()
+        updateRepeatBadge()
+    }
+
+    private func updateRepeatBadge() {
+        if let range = repeatRange {
+            repeatLabel.text = range.count == 1
+                ? "Repeating page %d".localized(range.lowerBound + 1)
+                : "Looping pages %d–%d".localized(range.lowerBound + 1, range.upperBound + 1)
+            repeatLabel.isHidden = false
+        } else if autoScroller.isRunning {
+            repeatLabel.text = "Auto Scroll".localized
+            repeatLabel.isHidden = false
+        } else {
+            repeatLabel.isHidden = true
+        }
+    }
+
+    private func promptGoToPage() {
+        let alert = UIAlertController(title: "Go to Page".localized, message: "Enter a page number (1–%d).".localized(pageCount), preferredStyle: .alert)
+        alert.addTextField { $0.keyboardType = .numberPad; $0.placeholder = "\(self.currentPageIndex + 1)" }
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+        alert.addAction(UIAlertAction(title: "Go".localized, style: .default) { [weak self, weak alert] _ in
+            guard let self, let number = Int(alert?.textFields?.first?.text ?? ""), (1...max(self.pageCount, 1)).contains(number) else { return }
+            self.turnPage(toIndex: number - 1, forward: number - 1 > self.currentPageIndex)
+        })
+        present(alert, animated: true)
+    }
+
+    private func promptLoopPages() {
+        let alert = UIAlertController(title: "Loop Pages".localized, message: "Enter a page number (1–%d).".localized(pageCount), preferredStyle: .alert)
+        alert.addTextField { $0.keyboardType = .numberPad; $0.placeholder = "From page".localized; $0.text = "\(self.currentPageIndex + 1)" }
+        alert.addTextField { $0.keyboardType = .numberPad; $0.placeholder = "To page".localized }
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+        alert.addAction(UIAlertAction(title: "Repeat".localized, style: .default) { [weak self, weak alert] _ in
+            guard let self, let fields = alert?.textFields,
+                  let from = Int(fields[0].text ?? ""), let to = Int(fields[1].text ?? ""),
+                  from <= to, from >= 1, to <= self.pageCount else { return }
+            self.repeatRange = (from - 1)...(to - 1)
+            self.turnPage(toIndex: from - 1, forward: from - 1 > self.currentPageIndex)
+        })
+        present(alert, animated: true)
+    }
+
     fileprivate func setUpMIDI() {
         guard scoreID != nil else { return }
 
