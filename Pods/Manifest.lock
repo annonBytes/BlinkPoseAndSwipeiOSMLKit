@@ -1,20 +1,3 @@
-PODS:
-  - lottie-ios (3.3.0)
-  - PDFReader (2.5.1)
-
-DEPENDENCIES:
-  - lottie-ios
-  - PDFReader
-
-SPEC REPOS:
-  trunk:
-    - lottie-ios
-    - PDFReader
-
-SPEC CHECKSUMS:
-  lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
-  PDFReader: 2c4a845d0560f33221cf911516e3b700967680f6
-
-PODFILE CHECKSUM: a8e40e544d24b564ac0ee9dcc3f5a9834d110791
+PODFILE CHECKSUM: db1fba30ca9c4360c2f016a3fc0c2af01c164cc5
 
 COCOAPODS: 1.16.2

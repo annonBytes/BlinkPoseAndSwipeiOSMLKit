@@ -47,6 +47,9 @@
             BlueprintName = "BlinkPoseAndSwipeiOSMLKit"
             ReferencedContainer = "container:BlinkPoseAndSwipeiOSMLKit.xcodeproj" />
       </BuildableProductRunnable>
+      <StoreKitConfigurationFileReference
+         identifier = "../../../BlinkPoseAndSwipeiOSMLKit/Configuration.storekit">
+      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
