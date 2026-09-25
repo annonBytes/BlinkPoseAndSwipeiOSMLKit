@@ -122,8 +122,10 @@ final class OnboardingViewController: UIViewController {
             closeButton.widthAnchor.constraint(equalToConstant: 40),
             closeButton.heightAnchor.constraint(equalToConstant: 40),
 
-            sheet.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            sheet.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            sheet.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            sheet.widthAnchor.constraint(lessThanOrEqualToConstant: 560),   // keep the card readable on iPad
+            sheet.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor),
+            sheet.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor),
             sheet.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
             collectionView.topAnchor.constraint(equalTo: sheet.topAnchor, constant: 8),
@@ -140,6 +142,9 @@ final class OnboardingViewController: UIViewController {
             pageControl.centerXAnchor.constraint(equalTo: sheet.centerXAnchor),
             pageControl.centerYAnchor.constraint(equalTo: previousButton.centerYAnchor),
         ])
+        let fullWidth = sheet.widthAnchor.constraint(equalTo: view.widthAnchor)
+        fullWidth.priority = .defaultHigh   // full width on iPhone; capped at 560 on iPad
+        fullWidth.isActive = true
         updateControls()
     }
 

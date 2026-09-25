@@ -209,12 +209,23 @@ extension LibraryViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LibraryScoreCell.identifier, for: indexPath) as! LibraryScoreCell
         let score = library.scores[indexPath.item]
-        cell.configure(with: score, thumbnail: library.thumbnail(for: score, size: CGSize(width: 160, height: 208)))
+        cell.configure(with: score, thumbnail: library.thumbnail(for: score, size: CGSize(width: itemWidth * view.traitCollection.displayScale, height: itemWidth * 1.3 * view.traitCollection.displayScale)))
         return cell
     }
 
+    // Two columns on phones; more on iPad and in landscape so cards stay a sensible size.
+    private var itemWidth: CGFloat {
+        let columns = max(2, Int(view.bounds.width / 200))
+        return floor((view.bounds.width - 16 * CGFloat(columns + 1)) / CGFloat(columns))
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate { _ in self.collectionView.collectionViewLayout.invalidateLayout() }
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (view.frame.width - 16 * 3) / 2
+        let width = itemWidth
         return CGSize(width: width, height: width * 1.3 + 44)
     }
 

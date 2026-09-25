@@ -18,6 +18,7 @@
 		1E03B15623DB7CCF0081F923 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E03B15423DB7CCF0081F923 /* LaunchScreen.storyboard */; };
 		27A13CDFE0CA578B487737C2 /* AutoScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F082A2B2B77763243A49302 /* AutoScroller.swift */; };
 		280EBC7DFBB5F11EFB82271B /* FaceGestureConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E910EFA30830C5DC8D7898 /* FaceGestureConfig.swift */; };
+		286E71FFED713E057CE7079C /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F66946B9A69765FF45150D7 /* ModelTests.swift */; };
 		288E44E4E4E98A797A5179B2 /* GestureCalibrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26977A199F8000C765129D27 /* GestureCalibrationViewController.swift */; };
 		29962997D406AF8E527B56E9 /* GestureSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4310D8C777A54C1C737CB8 /* GestureSettings.swift */; };
 		32A39E51EA764CA892293D78 /* LegalLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A678D6AA7B9863FEB87275F /* LegalLinks.swift */; };
@@ -41,10 +42,13 @@
 		7C27BD0EEC25E0CDFABCFE85 /* GestureFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75B1B95C918C92064CF0B6C /* GestureFeedbackView.swift */; };
 		923D501EC448407D57D9B10C /* LibraryScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F1BB68877F9C27AD5F0A51 /* LibraryScoreCell.swift */; };
 		AB50E0D4164888E8A96A4AB1 /* FaceGestureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0222C0BDCEF47093081F24D9 /* FaceGestureProcessor.swift */; };
+		ADD31C8B9EC18FAD51267F4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D97503B6854F83D1B7D7E3EC /* Foundation.framework */; };
 		B50D475ED20A46F4A537C084 /* EntitlementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B51C488D5D9F7635C2DE5E /* EntitlementManager.swift */; };
+		B7D84A595DF984CBE3A9111A /* FaceGestureProcessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BF3CBBE11EA733F4DB99E /* FaceGestureProcessorTests.swift */; };
 		C38CCFFC3D9D7C6909F795B2 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47312D1CE57BFE85942B7AE /* OnboardingViewController.swift */; };
 		C91393CF457B7F7C51D0DA6B /* ModalityKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941024C16A09B97BD2F96025 /* ModalityKind.swift */; };
 		CDAF4370D1CE21026CF5F863 /* PaywallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2806DE56F8C580F7C78DBF /* PaywallViewController.swift */; };
+		D64A42F6A9985B58E55B5597 /* TrialAndEntitlementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2198ECB5E02E723AC7A909AB /* TrialAndEntitlementTests.swift */; };
 		D93E9B6DAFD564B7A6874F51 /* MIDIPlaybackEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CDE0F1AE638FD064F930B /* MIDIPlaybackEngine.swift */; };
 		DC1249E46283000208F6E10A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E22DBD7FBC00E3219BA3B57 /* Theme.swift */; };
 		DDAA3C0CD58249E35E54AC3A /* HardwareKeyGestureDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A90661836724116B90E13FC /* HardwareKeyGestureDetector.swift */; };
@@ -53,6 +57,16 @@
 		F316ADF85B0BCCA8E93448AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 241FB297565FF94AF24F994A /* InfoPlist.strings */; };
 		FDD7DB6C5B9D26CA0D9A97A1 /* PlaceholderScoreGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8249788828DE6526531AD7AA /* PlaceholderScoreGenerator.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2CB180DAC14107FAA2B82CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E03B13E23DB7CC90081F923 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E03B14523DB7CC90081F923;
+			remoteInfo = BlinkPoseAndSwipeiOSMLKit;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0222C0BDCEF47093081F24D9 /* FaceGestureProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FaceGestureProcessor.swift; sourceTree = "<group>"; };
@@ -65,16 +79,19 @@
 		1E03B15223DB7CCF0081F923 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E03B15523DB7CCF0081F923 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E03B15723DB7CCF0081F923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2198ECB5E02E723AC7A909AB /* TrialAndEntitlementTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TrialAndEntitlementTests.swift; sourceTree = "<group>"; };
 		25391496830012A5F1AB8DCD /* es */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		26977A199F8000C765129D27 /* GestureCalibrationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GestureCalibrationViewController.swift; sourceTree = "<group>"; };
 		276105796F796C064971C3A9 /* GestureDetector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GestureDetector.swift; sourceTree = "<group>"; };
 		2966FE7C571AEAA3B4623E02 /* Localization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		2C2BF3CBBE11EA733F4DB99E /* FaceGestureProcessorTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FaceGestureProcessorTests.swift; sourceTree = "<group>"; };
 		2DEDF72B6CC688FDC8F3B313 /* ScoreViewerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreViewerViewController.swift; sourceTree = "<group>"; };
 		3003215253C7DB10F35A874E /* MIDIPageTurnController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIPageTurnController.swift; sourceTree = "<group>"; };
 		3B4B5F0C355278781B14B7C4 /* es */ = {isa = PBXFileReference; includeInIndex = 1; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		4A678D6AA7B9863FEB87275F /* LegalLinks.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LegalLinks.swift; sourceTree = "<group>"; };
 		4A90661836724116B90E13FC /* HardwareKeyGestureDetector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HardwareKeyGestureDetector.swift; sourceTree = "<group>"; };
 		4B2806DE56F8C580F7C78DBF /* PaywallViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PaywallViewController.swift; sourceTree = "<group>"; };
+		4B8C28A87539203483EF2FF6 /* BlinkPoseAndSwipeiOSMLKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlinkPoseAndSwipeiOSMLKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		500CDE0F1AE638FD064F930B /* MIDIPlaybackEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIPlaybackEngine.swift; sourceTree = "<group>"; };
 		541DDD32160FB84F1C37D706 /* Configuration.storekit */ = {isa = PBXFileReference; includeInIndex = 1; path = Configuration.storekit; sourceTree = "<group>"; };
 		55EF3496E0B525C82CEA9711 /* VisionFaceMetrics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VisionFaceMetrics.swift; sourceTree = "<group>"; };
@@ -100,6 +117,7 @@
 		8833D23FAE7875C6B963B460 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		941024C16A09B97BD2F96025 /* ModalityKind.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModalityKind.swift; sourceTree = "<group>"; };
 		973CC9E35435679FEFA1BF97 /* de */ = {isa = PBXFileReference; includeInIndex = 1; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		9F66946B9A69765FF45150D7 /* ModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		A5E3B5F75F70F1462FD1F6CC /* Score.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		A7D5C12C2A2298C126900804 /* fr */ = {isa = PBXFileReference; includeInIndex = 1; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B44ADB96DBBBDD21A7648DC6 /* fr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -108,6 +126,7 @@
 		CBE9E91F44402E5436721D0E /* en */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D493FB1E70BDE1CB3E340DD0 /* AnnotationTool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AnnotationTool.swift; sourceTree = "<group>"; };
 		D75B1B95C918C92064CF0B6C /* GestureFeedbackView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GestureFeedbackView.swift; sourceTree = "<group>"; };
+		D97503B6854F83D1B7D7E3EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		E4BD2398980C7A7620B40D7C /* en */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F7F1BB68877F9C27AD5F0A51 /* LibraryScoreCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LibraryScoreCell.swift; sourceTree = "<group>"; };
 		FAB363A443C872409FF1168F /* AnnotationOverlayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AnnotationOverlayView.swift; sourceTree = "<group>"; };
@@ -120,6 +139,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DD2EE0127FDF359008D29B9 /* CoreBluetooth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		276DA7D140340B0CC28F0896 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADD31C8B9EC18FAD51267F4D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +178,7 @@
 				1E03B14823DB7CC90081F923 /* BlinkPoseAndSwipeiOSMLKit */,
 				1E03B14723DB7CC90081F923 /* Products */,
 				49AED5CF2D6CF5492C3B37CB /* Frameworks */,
+				8A3EA00F81E65B66BF404F7B /* BlinkPoseAndSwipeiOSMLKitTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				1E03B14623DB7CC90081F923 /* BlinkPoseAndSwipeiOSMLKit.app */,
+				4B8C28A87539203483EF2FF6 /* BlinkPoseAndSwipeiOSMLKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -205,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				6DD2EE0027FDF358008D29B9 /* CoreBluetooth.framework */,
+				F53A86F536CF9C8A3B392BEF /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -259,6 +289,17 @@
 			path = Annotation;
 			sourceTree = "<group>";
 		};
+		8A3EA00F81E65B66BF404F7B /* BlinkPoseAndSwipeiOSMLKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				2C2BF3CBBE11EA733F4DB99E /* FaceGestureProcessorTests.swift */,
+				9F66946B9A69765FF45150D7 /* ModelTests.swift */,
+				2198ECB5E02E723AC7A909AB /* TrialAndEntitlementTests.swift */,
+			);
+			name = BlinkPoseAndSwipeiOSMLKitTests;
+			path = BlinkPoseAndSwipeiOSMLKitTests;
+			sourceTree = "<group>";
+		};
 		9F597BD3D12DD7F5CB9D1839 /* Gestures */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +331,14 @@
 			path = Purchases;
 			sourceTree = "<group>";
 		};
+		F53A86F536CF9C8A3B392BEF /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				D97503B6854F83D1B7D7E3EC /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -310,6 +359,24 @@
 			productName = BlinkPoseAndSwipeiOSMLKit;
 			productReference = 1E03B14623DB7CC90081F923 /* BlinkPoseAndSwipeiOSMLKit.app */;
 			productType = "com.apple.product-type.application";
+		};
+		B0841E295DA11C3E3D5E9542 /* BlinkPoseAndSwipeiOSMLKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E110538AF415A299209070C /* Build configuration list for PBXNativeTarget "BlinkPoseAndSwipeiOSMLKitTests" */;
+			buildPhases = (
+				574BA4705BD16FA22ECC575C /* Sources */,
+				276DA7D140340B0CC28F0896 /* Frameworks */,
+				B4DC872BB6A2EC26AE2FA24B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				61F8128C12FB627475F9C849 /* PBXTargetDependency */,
+			);
+			name = BlinkPoseAndSwipeiOSMLKitTests;
+			productName = BlinkPoseAndSwipeiOSMLKitTests;
+			productReference = 4B8C28A87539203483EF2FF6 /* BlinkPoseAndSwipeiOSMLKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -343,6 +410,7 @@
 			projectRoot = "";
 			targets = (
 				1E03B14523DB7CC90081F923 /* BlinkPoseAndSwipeiOSMLKit */,
+				B0841E295DA11C3E3D5E9542 /* BlinkPoseAndSwipeiOSMLKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -358,6 +426,13 @@
 				5CD685D67BFF46F76F7D99B1 /* Localizable.stringsdict in Resources */,
 				F316ADF85B0BCCA8E93448AF /* InfoPlist.strings in Resources */,
 				45BAF840B96EC79C1A4CD1D0 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4DC872BB6A2EC26AE2FA24B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,7 +506,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		574BA4705BD16FA22ECC575C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7D84A595DF984CBE3A9111A /* FaceGestureProcessorTests.swift in Sources */,
+				286E71FFED713E057CE7079C /* ModelTests.swift in Sources */,
+				D64A42F6A9985B58E55B5597 /* TrialAndEntitlementTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		61F8128C12FB627475F9C849 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BlinkPoseAndSwipeiOSMLKit;
+			target = 1E03B14523DB7CC90081F923 /* BlinkPoseAndSwipeiOSMLKit */;
+			targetProxy = 2CB180DAC14107FAA2B82CFF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0D346EAB1AFA139E60A294D0 /* Localizable.strings */ = {
@@ -632,6 +726,39 @@
 			};
 			name = Release;
 		};
+		3E85077D8C14DC7D1EE34EA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bytepro.BlinkAndSwipeiOSMLKit.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlinkPoseAndSwipeiOSMLKit.app/BlinkPoseAndSwipeiOSMLKit";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		493689E21983E83BB0740BBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bytepro.BlinkAndSwipeiOSMLKit.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlinkPoseAndSwipeiOSMLKit.app/BlinkPoseAndSwipeiOSMLKit";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -649,6 +776,15 @@
 			buildConfigurations = (
 				1E03B15B23DB7CCF0081F923 /* Debug */,
 				1E03B15C23DB7CCF0081F923 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E110538AF415A299209070C /* Build configuration list for PBXNativeTarget "BlinkPoseAndSwipeiOSMLKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E85077D8C14DC7D1EE34EA7 /* Release */,
+				493689E21983E83BB0740BBC /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
