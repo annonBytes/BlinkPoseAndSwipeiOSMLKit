@@ -52,6 +52,7 @@
 		B7D84A595DF984CBE3A9111A /* FaceGestureProcessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BF3CBBE11EA733F4DB99E /* FaceGestureProcessorTests.swift */; };
 		C38CCFFC3D9D7C6909F795B2 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47312D1CE57BFE85942B7AE /* OnboardingViewController.swift */; };
 		C91393CF457B7F7C51D0DA6B /* ModalityKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941024C16A09B97BD2F96025 /* ModalityKind.swift */; };
+		CBAF12B777A53E35C55141F6 /* ZoomSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121B1E790BBA2F70D9141FDB /* ZoomSetting.swift */; };
 		CDAF4370D1CE21026CF5F863 /* PaywallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2806DE56F8C580F7C78DBF /* PaywallViewController.swift */; };
 		D64A42F6A9985B58E55B5597 /* TrialAndEntitlementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2198ECB5E02E723AC7A909AB /* TrialAndEntitlementTests.swift */; };
 		D93E9B6DAFD564B7A6874F51 /* MIDIPlaybackEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CDE0F1AE638FD064F930B /* MIDIPlaybackEngine.swift */; };
@@ -79,6 +80,7 @@
 		0222C0BDCEF47093081F24D9 /* FaceGestureProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FaceGestureProcessor.swift; sourceTree = "<group>"; };
 		0CA614DBF2D8E91475E6ABCE /* SubscriptionStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SubscriptionStore.swift; sourceTree = "<group>"; };
 		0DCA43F81AD6E7AE001A409C /* SwipeGestureDetector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwipeGestureDetector.swift; sourceTree = "<group>"; };
+		121B1E790BBA2F70D9141FDB /* ZoomSetting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZoomSetting.swift; sourceTree = "<group>"; };
 		1AB1107D4E18C0476CB9E294 /* LibraryViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		1E03B14623DB7CC90081F923 /* BlinkPoseAndSwipeiOSMLKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlinkPoseAndSwipeiOSMLKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E03B14923DB7CC90081F923 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				6F2EC77111ED8B7F3FE3A177 /* PageTurnAnimator.swift */,
 				5F082A2B2B77763243A49302 /* AutoScroller.swift */,
 				872630F7544C63F503960FAD /* Follow */,
+				121B1E790BBA2F70D9141FDB /* ZoomSetting.swift */,
 			);
 			name = Core;
 			path = Core;
@@ -535,6 +538,7 @@
 				3F60E3002235722A459B7F01 /* NoteFollower.swift in Sources */,
 				78E824B1603BECC8A8DBF343 /* ScoreFollowController.swift in Sources */,
 				F2B78E321AC8E125A21EF644 /* TempoFollower.swift in Sources */,
+				CBAF12B777A53E35C55141F6 /* ZoomSetting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

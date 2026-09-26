@@ -91,21 +91,6 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
         scoreID.flatMap { library.score(withID: $0) }
     }
 
-    private lazy var midiButton: UIButton = {
-        var config = UIButton.Configuration.filled()
-        config.image = UIImage(systemName: "music.note")
-        config.cornerStyle = .capsule
-        config.baseBackgroundColor = .secondarySystemBackground
-        config.baseForegroundColor = Theme.accent
-        let button = UIButton(configuration: config)
-        button.showsMenuAsPrimaryAction = true
-        button.accessibilityLabel = "MIDI".localized
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        return button
-    }()
-
     private let midiStatusLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 13, weight: .semibold)
@@ -114,14 +99,7 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
         return label
     }()
 
-    private lazy var midiStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [midiButton, midiStatusLabel])
-        stack.axis = .horizontal
-        stack.spacing = 8
-        stack.alignment = .center
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
+    private var lastZoomedSize = CGSize.zero
 
     private var currentAnnotationTool: AnnotationTool = .pen {
         didSet {
@@ -316,7 +294,7 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
         navigationItem.rightBarButtonItems = mode == .performance ? [modalityButton] : [annotateButton, modalityButton, settingsButton]
         modalityButton.image = UIImage(systemName: mode == .performance ? "theatermasks.fill" : "arrow.triangle.swap")
         modalityButton.menu = makeModalityMenu()
-        midiButton.menu = makeMIDIMenu()
+        refreshToolsMenu()
         UIApplication.shared.isIdleTimerDisabled = mode == .performance
     }
 
@@ -478,10 +456,78 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
 // MARK: - MIDI auto page turning
 
 extension ScoreViewerViewController: UIDocumentPickerDelegate {
+    // MARK: - Zoom
+
+    private static let zoomFactors: [CGFloat] = [1, 1.25, 1.5, 2, 2.5, 3]
+
+    private func makeZoomMenu() -> UIMenu {
+        let mode = ZoomSetting.current
+        let fit = UIAction(title: "Fit Page".localized, image: UIImage(systemName: "arrow.up.left.and.arrow.down.right"), state: mode == .fitPage ? .on : .off) { [weak self] _ in
+            self?.setZoom(.fitPage)
+        }
+        let width = UIAction(title: "Fit Width".localized, image: UIImage(systemName: "arrow.left.and.right"), state: mode == .fitWidth ? .on : .off) { [weak self] _ in
+            self?.setZoom(.fitWidth)
+        }
+        let steps = UIMenu(options: .displayInline, children: [
+            UIAction(title: "Zoom In".localized, image: UIImage(systemName: "plus.magnifyingglass")) { [weak self] _ in self?.stepZoom(by: 1) },
+            UIAction(title: "Zoom Out".localized, image: UIImage(systemName: "minus.magnifyingglass")) { [weak self] _ in self?.stepZoom(by: -1) },
+        ])
+        return UIMenu(title: "Zoom".localized, image: UIImage(systemName: "magnifyingglass"), children: [fit, width, steps])
+    }
+
+    private func setZoom(_ setting: ZoomSetting) {
+        ZoomSetting.current = setting
+        applyZoom()
+        refreshToolsMenu()
+    }
+
+    private func stepZoom(by direction: Int) {
+        var index: Int
+        switch ZoomSetting.current {
+        case .fitPage: index = 0
+        case .fitWidth: index = 0
+        case .factor(let value): index = Self.zoomFactors.enumerated().min { abs($0.element - value) < abs($1.element - value) }?.offset ?? 0
+        }
+        index = min(max(index + direction, 0), Self.zoomFactors.count - 1)
+        setZoom(index == 0 ? .fitPage : .factor(Self.zoomFactors[index]))
+    }
+
+    /// Applies the chosen zoom to the current layout. Zoom is remembered and
+    /// re-applied after rotation so people who need larger notation keep it.
+    private func applyZoom() {
+        guard !autoScroller.isRunning else { return }
+        let fitScale = pdfView.scaleFactorForSizeToFit
+        switch ZoomSetting.current {
+        case .fitPage:
+            pdfView.autoScales = true
+        case .fitWidth:
+            guard let page = pdfView.currentPage else { return }
+            let pageWidth = page.bounds(for: pdfView.displayBox).width
+            guard pageWidth > 0 else { return }
+            pdfView.autoScales = false
+            pdfView.scaleFactor = pdfView.bounds.width / pageWidth
+        case .factor(let value):
+            pdfView.autoScales = false
+            pdfView.scaleFactor = fitScale * value
+        }
+        if let page = pdfView.currentPage, ZoomSetting.current != .fitPage {
+            // Start each page at its top edge so the first line is what you see.
+            pdfView.go(to: CGRect(x: 0, y: page.bounds(for: pdfView.displayBox).maxY, width: 1, height: 1), on: page)
+        }
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if lastZoomedSize != pdfView.bounds.size {
+            lastZoomedSize = pdfView.bounds.size
+            applyZoom()
+        }
+    }
+
     // MARK: - Tools (go to page, repeat, auto scroll)
 
     private func setUpTools() {
-        let stack = UIStackView(arrangedSubviews: [repeatLabel, toolsButton])
+        let stack = UIStackView(arrangedSubviews: [midiStatusLabel, repeatLabel, toolsButton])
         stack.axis = .horizontal
         stack.spacing = 8
         stack.alignment = .center
@@ -492,6 +538,16 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
             stack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -76),
         ])
         toolsButton.menu = makeToolsMenu()
+    }
+
+    private func refreshToolsMenu() {
+        toolsButton.menu = makeToolsMenu()
+    }
+
+    /// Highlights the tools button while MIDI playback, recording or mic following is running.
+    private func setToolsActive(_ active: Bool) {
+        toolsButton.configuration?.baseBackgroundColor = active ? Theme.accent : .secondarySystemBackground
+        toolsButton.configuration?.baseForegroundColor = active ? .black : Theme.accent
     }
 
     private var pageCount: Int { pdfView.document?.pageCount ?? 0 }
@@ -531,7 +587,12 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
         }))
         let scrollMenu = UIMenu(title: "Auto Scroll".localized, options: .displayInline, children: scrollItems)
 
-        return UIMenu(title: "Tools".localized, children: [goTo, repeatMenu, scrollMenu])
+        var children: [UIMenuElement] = [goTo, makeZoomMenu(), repeatMenu, scrollMenu]
+        if currentScore != nil {
+            let midi = makeMIDIMenu()
+            children.append(UIMenu(title: midi.title, image: UIImage(systemName: "music.note"), children: midi.children))
+        }
+        return UIMenu(title: "Tools".localized, children: children)
     }
 
     private func setAutoScroll(_ on: Bool) {
@@ -540,6 +601,7 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
             autoScroller.start()
         } else {
             autoScroller.stop()
+            applyZoom()
         }
         toolsButton.menu = makeToolsMenu()
         updateRepeatBadge()
@@ -547,6 +609,7 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
 
     private func autoScrollFinished() {
         autoScroller.stop()
+        applyZoom()
         toolsButton.menu = makeToolsMenu()
         updateRepeatBadge()
     }
@@ -594,16 +657,10 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
     fileprivate func setUpMIDI() {
         guard scoreID != nil else { return }
 
-        view.addSubview(midiStack)
-        NSLayoutConstraint.activate([
-            midiStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            midiStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -76),
-        ])
-
         midiController.onModeChanged = { [weak self] mode in self?.midiModeChanged(mode) }
         midiController.onNavigate = { [weak self] index in self?.turnPage(toIndex: index) }
         midiController.onRecordingFinished = { [weak self] marks in self?.saveRecordedMarks(marks) }
-        midiButton.menu = makeMIDIMenu()
+        refreshToolsMenu()
     }
 
     private func midiModeChanged(_ mode: MIDIPageTurnController.Mode) {
@@ -617,9 +674,8 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
             midiStatusLabel.text = "Recording page turns…".localized
             midiStatusLabel.isHidden = false
         }
-        midiButton.configuration?.baseBackgroundColor = mode == .idle ? .secondarySystemBackground : Theme.accent
-        midiButton.configuration?.baseForegroundColor = mode == .idle ? Theme.accent : .black
-        midiButton.menu = makeMIDIMenu()
+        setToolsActive(mode != .idle)
+        refreshToolsMenu()
     }
 
     private func makeMIDIMenu() -> UIMenu {
@@ -646,7 +702,7 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
                 UIAction(title: "Remove MIDI File".localized, image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
                     guard let self, let score = self.currentScore else { return }
                     self.library.removeMIDI(from: score)
-                    self.midiButton.menu = self.makeMIDIMenu()
+                    self.refreshToolsMenu()
                 },
             ]))
         } else {
@@ -694,7 +750,7 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
         isCountingDown = true
         midiStatusLabel.text = "Starting in %d…".localized(remaining)
         midiStatusLabel.isHidden = false
-        midiButton.menu = makeMIDIMenu()
+        refreshToolsMenu()
 
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
             guard let self else { timer.invalidate(); return }
@@ -710,7 +766,7 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
                 try self.midiController.startPlaying(midiURL: midiURL, marks: marks, silent: true)
             } catch {
                 self.midiStatusLabel.isHidden = true
-                self.midiButton.menu = self.makeMIDIMenu()
+                self.refreshToolsMenu()
                 self.presentMIDIMessage(title: "Couldn't Play MIDI File".localized, message: error.localizedDescription)
             }
         }
@@ -726,7 +782,7 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
             if let error {
                 self.presentMIDIMessage(title: "Couldn't Start Listening".localized, message: error.localizedDescription)
             }
-            self.midiButton.menu = self.makeMIDIMenu()
+            self.refreshToolsMenu()
         }
     }
 
@@ -740,9 +796,8 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
             midiStatusLabel.text = "Following your playing".localized
             midiStatusLabel.isHidden = false
         }
-        midiButton.configuration?.baseBackgroundColor = state == .idle ? .secondarySystemBackground : Theme.accent
-        midiButton.configuration?.baseForegroundColor = state == .idle ? Theme.accent : .black
-        midiButton.menu = makeMIDIMenu()
+        setToolsActive(state != .idle)
+        refreshToolsMenu()
     }
 
     fileprivate func cancelAutoTurn() {
@@ -752,7 +807,7 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
         isCountingDown = false
         midiController.stop()
         midiStatusLabel.isHidden = true
-        midiButton.menu = makeMIDIMenu()
+        refreshToolsMenu()
     }
 
     private func presentMIDIPicker() {
@@ -769,7 +824,7 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
         guard let url = urls.first, let score = currentScore else { return }
         do {
             try library.attachMIDI(at: url, to: score)
-            midiButton.menu = makeMIDIMenu()
+            refreshToolsMenu()
         } catch {
             presentMIDIMessage(title: "Couldn't Add MIDI File".localized, message: error.localizedDescription)
         }
@@ -802,7 +857,7 @@ extension ScoreViewerViewController: UIDocumentPickerDelegate {
     private func saveRecordedMarks(_ marks: [PageMark]) {
         guard let score = currentScore else { return }
         library.setPageMarks(marks, for: score)
-        midiButton.menu = makeMIDIMenu()
+        refreshToolsMenu()
         presentMIDIMessage(title: "Page turns saved".localized, message: String.localizedStringWithFormat(NSLocalizedString("midi_marks_saved", comment: ""), marks.count))
     }
 

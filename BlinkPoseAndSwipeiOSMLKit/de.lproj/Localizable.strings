@@ -164,3 +164,9 @@
 "This MIDI file has no notes to follow." = "Diese MIDI-Datei enthält keine Noten zum Verfolgen.";
 "PageTurn needs microphone access to follow your playing. You can allow it in Settings › PageTurn." = "PageTurn benötigt Mikrofonzugriff, um deinem Spiel zu folgen. Du kannst ihn in Einstellungen › PageTurn erlauben.";
 "Couldn't Start Listening" = "Zuhören nicht möglich";
+
+"Zoom" = "Zoom";
+"Fit Page" = "Seite einpassen";
+"Fit Width" = "Breite einpassen";
+"Zoom In" = "Vergrößern";
+"Zoom Out" = "Verkleinern";

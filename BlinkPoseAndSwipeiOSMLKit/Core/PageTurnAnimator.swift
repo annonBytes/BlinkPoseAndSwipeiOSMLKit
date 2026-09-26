@@ -191,7 +191,11 @@ final class PageTurnAnimator {
         let frame = pdfView.convert(bounds, from: page)
         guard frame.width > 1, frame.height > 1, bounds.width > 0, bounds.height > 0 else { return nil }
 
-        let image = UIGraphicsImageRenderer(size: frame.size).image { context in
+        // A zoomed page can be several screens tall; keep the snapshot within a sane pixel budget.
+        let format = UIGraphicsImageRendererFormat.default()
+        let maxPixels: CGFloat = 6_000_000
+        format.scale = min(format.scale, sqrt(maxPixels / (frame.width * frame.height)))
+        let image = UIGraphicsImageRenderer(size: frame.size, format: format).image { context in
             UIColor.white.setFill()
             context.fill(CGRect(origin: .zero, size: frame.size))
             let cg = context.cgContext
