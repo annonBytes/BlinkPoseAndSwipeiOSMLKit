@@ -43,6 +43,7 @@
 		6DD2EE0127FDF359008D29B9 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD2EE0027FDF358008D29B9 /* CoreBluetooth.framework */; };
 		754B837A22A3057825148F7D /* MicrophoneAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818C67FE928B13E279097ED /* MicrophoneAnalyzer.swift */; };
 		78E824B1603BECC8A8DBF343 /* ScoreFollowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48693164FC74296237577149 /* ScoreFollowController.swift */; };
+		7AE5447BE6AD5789CA98538E /* ScoreSourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CF341678ADC6652379158B /* ScoreSourcesViewController.swift */; };
 		7B8A612BADCA5745BFFD953C /* MetronomeEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74718BB5B7B8008E8600EE77 /* MetronomeEngine.swift */; };
 		7C27BD0EEC25E0CDFABCFE85 /* GestureFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75B1B95C918C92064CF0B6C /* GestureFeedbackView.swift */; };
 		923D501EC448407D57D9B10C /* LibraryScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F1BB68877F9C27AD5F0A51 /* LibraryScoreCell.swift */; };
@@ -62,6 +63,7 @@
 		ECBFC6B141EBEA95E6DD6A69 /* ScoreLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6341CA3202010BF240356916 /* ScoreLibrary.swift */; };
 		F2B78E321AC8E125A21EF644 /* TempoFollower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974797E79B4F985859BEA93F /* TempoFollower.swift */; };
 		F316ADF85B0BCCA8E93448AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 241FB297565FF94AF24F994A /* InfoPlist.strings */; };
+		F6C4D7B7A7EBA24C2C4FFA62 /* ScoreWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8903B55F5C1857D56FE01F6 /* ScoreWebViewController.swift */; };
 		FDD7DB6C5B9D26CA0D9A97A1 /* PlaceholderScoreGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8249788828DE6526531AD7AA /* PlaceholderScoreGenerator.swift */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +107,7 @@
 		500CDE0F1AE638FD064F930B /* MIDIPlaybackEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIDIPlaybackEngine.swift; sourceTree = "<group>"; };
 		541DDD32160FB84F1C37D706 /* Configuration.storekit */ = {isa = PBXFileReference; includeInIndex = 1; path = Configuration.storekit; sourceTree = "<group>"; };
 		55EF3496E0B525C82CEA9711 /* VisionFaceMetrics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VisionFaceMetrics.swift; sourceTree = "<group>"; };
+		57CF341678ADC6652379158B /* ScoreSourcesViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreSourcesViewController.swift; sourceTree = "<group>"; };
 		5A671A447ECA473262188BB0 /* de */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5F082A2B2B77763243A49302 /* AutoScroller.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AutoScroller.swift; sourceTree = "<group>"; };
 		6341CA3202010BF240356916 /* ScoreLibrary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreLibrary.swift; sourceTree = "<group>"; };
@@ -133,6 +136,7 @@
 		A3260199A90A78560A143FE7 /* ScoreFollowingTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreFollowingTests.swift; sourceTree = "<group>"; };
 		A5E3B5F75F70F1462FD1F6CC /* Score.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		A7D5C12C2A2298C126900804 /* fr */ = {isa = PBXFileReference; includeInIndex = 1; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		A8903B55F5C1857D56FE01F6 /* ScoreWebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScoreWebViewController.swift; sourceTree = "<group>"; };
 		B44ADB96DBBBDD21A7648DC6 /* fr */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BCFB06B67DAE3C729E73E39D /* en */ = {isa = PBXFileReference; includeInIndex = 1; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		C47312D1CE57BFE85942B7AE /* OnboardingViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -291,6 +295,8 @@
 				670A5620EFE42DAFB39B5226 /* SettingsViewController.swift */,
 				C47312D1CE57BFE85942B7AE /* OnboardingViewController.swift */,
 				26977A199F8000C765129D27 /* GestureCalibrationViewController.swift */,
+				57CF341678ADC6652379158B /* ScoreSourcesViewController.swift */,
+				A8903B55F5C1857D56FE01F6 /* ScoreWebViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -539,6 +545,8 @@
 				78E824B1603BECC8A8DBF343 /* ScoreFollowController.swift in Sources */,
 				F2B78E321AC8E125A21EF644 /* TempoFollower.swift in Sources */,
 				CBAF12B777A53E35C55141F6 /* ZoomSetting.swift in Sources */,
+				7AE5447BE6AD5789CA98538E /* ScoreSourcesViewController.swift in Sources */,
+				F6C4D7B7A7EBA24C2C4FFA62 /* ScoreWebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

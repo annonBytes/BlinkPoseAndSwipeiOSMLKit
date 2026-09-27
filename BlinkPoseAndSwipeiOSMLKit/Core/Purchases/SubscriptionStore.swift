@@ -1,14 +1,25 @@
 import StoreKit
 
-// StoreKit 2 wrapper for the single "Premium Monthly" auto-renewable
-// subscription. Local development/testing uses Configuration.storekit (wired
+// StoreKit 2 wrapper for the "Premium" auto-renewable subscription group: a
+// monthly and a yearly plan. Local development/testing uses Configuration.storekit (wired
 // into the Xcode scheme) — no App Store Connect setup needed until this
 // ships, at which point a real product with the same identifier must be
 // created there.
 final class SubscriptionStore {
     static let shared = SubscriptionStore()
 
-    static let premiumMonthlyProductID = "com.bytepro.BlinkAndSwipeiOSMLKit.premium.monthly"
+    enum Plan: CaseIterable {
+        case monthly, yearly
+
+        var productID: String {
+            switch self {
+            case .monthly: return "com.bytepro.BlinkAndSwipeiOSMLKit.premium.monthly"
+            case .yearly: return "com.bytepro.BlinkAndSwipeiOSMLKit.premium.yearly"
+            }
+        }
+    }
+
+    static let premiumMonthlyProductID = Plan.monthly.productID
 
     private(set) var products: [Product] = []
     private(set) var isSubscribed = false
@@ -36,7 +47,7 @@ final class SubscriptionStore {
 
     func loadProducts() async {
         do {
-            products = try await Product.products(for: [Self.premiumMonthlyProductID])
+            products = try await Product.products(for: Plan.allCases.map(\.productID))
         } catch {
             products = []
         }
@@ -46,7 +57,7 @@ final class SubscriptionStore {
     func refreshEntitlements() async -> Bool {
         var subscribed = false
         for await result in Transaction.currentEntitlements {
-            if case .verified(let transaction) = result, transaction.productID == Self.premiumMonthlyProductID {
+            if case .verified(let transaction) = result, Plan.allCases.contains(where: { $0.productID == transaction.productID }) {
                 subscribed = true
             }
         }
@@ -54,8 +65,12 @@ final class SubscriptionStore {
         return subscribed
     }
 
-    func purchase() async throws {
-        guard let product = products.first else { return }
+    func product(for plan: Plan) -> Product? {
+        products.first { $0.id == plan.productID }
+    }
+
+    func purchase(plan: Plan) async throws {
+        guard let product = product(for: plan) else { return }
         let result = try await product.purchase()
         switch result {
         case .success(let verification):

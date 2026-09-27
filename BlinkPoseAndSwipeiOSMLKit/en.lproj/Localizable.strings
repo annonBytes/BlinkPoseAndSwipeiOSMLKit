@@ -111,7 +111,6 @@
 "Auto Turn is a Premium feature" = "Auto Turn is a Premium feature";
 "Subscribe to let PageTurn turn your pages while you perform. Auto Turn is included with Premium." = "Subscribe to let PageTurn turn your pages while you perform. Auto Turn is included with Premium.";
 "Performance mode with automatic page turning" = "Performance mode with automatic page turning";
-"Payment is charged to your Apple ID at confirmation. The subscription renews monthly unless cancelled at least 24 hours before the end of the current period. Manage or cancel in Settings › Apple ID › Subscriptions." = "Payment is charged to your Apple ID at confirmation. The subscription renews monthly unless cancelled at least 24 hours before the end of the current period. Manage or cancel in Settings › Apple ID › Subscriptions.";
 "Terms of Use" = "Terms of Use";
 "Privacy Policy" = "Privacy Policy";
 "About" = "About";
@@ -170,3 +169,50 @@
 "Fit Width" = "Fit Width";
 "Zoom In" = "Zoom In";
 "Zoom Out" = "Zoom Out";
+
+"Let's get started" = "Let's get started";
+"Keep the music going" = "Keep the music going";
+"Go Premium" = "Go Premium";
+"Today" = "Today";
+"Anytime" = "Anytime";
+"Day 7" = "Day 7";
+"Full access to uploads, every modality and annotation. No payment needed." = "Full access to uploads, every modality and annotation. No payment needed.";
+"Subscribe whenever you like to unlock Performance mode and automatic page turning. It isn't part of the trial." = "Subscribe whenever you like to unlock Performance mode and automatic page turning. It isn't part of the trial.";
+"Your free trial ends. Subscribe to keep uploading; the Welcome score stays free forever." = "Your free trial ends. Subscribe to keep uploading; the Welcome score stays free forever.";
+"%@ per month. Cancel anytime." = "%@ per month. Cancel anytime.";
+"Cancel anytime." = "Cancel anytime.";
+"Secured by Apple" = "Secured by Apple";
+"Close" = "Close";
+
+"Free trial" = "Free trial";
+"%d days left · ends %@" = "%d days left · ends %@";
+"Trial ended" = "Trial ended";
+"1 month" = "1 month";
+"1 month, %@" = "1 month, %@";
+
+"Restore" = "Restore";
+"Terms" = "Terms";
+"Privacy" = "Privacy";
+
+"Monthly" = "Monthly";
+"Billed monthly" = "Billed monthly";
+"%d days" = "%d days";
+"Ends %@" = "Ends %@";
+"No card needed" = "No card needed";
+"Unlock hands-free page turning" = "Unlock hands-free page turning";
+"Auto Turn is included with Premium" = "Auto Turn is included with Premium";
+
+"Yearly" = "Yearly";
+"Billed yearly" = "Billed yearly";
+"Save %d%%" = "Save %d%%";
+"Your free trial needs no card. Subscribe any time." = "Your free trial needs no card. Subscribe any time.";
+"Payment is charged to your Apple ID at confirmation. The subscription renews automatically each month or year, depending on your plan, unless cancelled at least 24 hours before the end of the current period. Manage or cancel in Settings › Apple ID › Subscriptions." = "Payment is charged to your Apple ID at confirmation. The subscription renews automatically each month or year, depending on your plan, unless cancelled at least 24 hours before the end of the current period. Manage or cancel in Settings › Apple ID › Subscriptions.";
+
+"Browse Scores" = "Browse Scores";
+"Browse Scores Online" = "Browse Scores Online";
+"The Petrucci Music Library: hundreds of thousands of public-domain scores." = "The Petrucci Music Library: hundreds of thousands of public-domain scores.";
+"Free-to-print classical scores, carefully typeset and openly licensed." = "Free-to-print classical scores, carefully typeset and openly licensed.";
+"The Choral Public Domain Library: choral and vocal music." = "The Choral Public Domain Library: choral and vocal music.";
+"PageTurn isn't affiliated with these sites. Only download scores that are in the public domain or that you have the right to use." = "PageTurn isn't affiliated with these sites. Only download scores that are in the public domain or that you have the right to use.";
+"Only PDF scores can be added to your Library." = "Only PDF scores can be added to your Library.";
+"Added “%@” to your Library." = "Added “%@” to your Library.";

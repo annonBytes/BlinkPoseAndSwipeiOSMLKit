@@ -111,7 +111,6 @@
 "Auto Turn is a Premium feature" = "Le tourne-page auto est une fonction Premium";
 "Subscribe to let PageTurn turn your pages while you perform. Auto Turn is included with Premium." = "Abonnez-vous pour que PageTurn tourne vos pages pendant votre concert. Le tourne-page auto est inclus dans Premium.";
 "Performance mode with automatic page turning" = "Mode Concert avec changement de page automatique";
-"Payment is charged to your Apple ID at confirmation. The subscription renews monthly unless cancelled at least 24 hours before the end of the current period. Manage or cancel in Settings › Apple ID › Subscriptions." = "Le paiement est débité de votre identifiant Apple à la confirmation. L'abonnement se renouvelle chaque mois sauf résiliation au moins 24 heures avant la fin de la période en cours. Gérez-le ou résiliez-le dans Réglages › identifiant Apple › Abonnements.";
 "Terms of Use" = "Conditions d'utilisation";
 "Privacy Policy" = "Politique de confidentialité";
 "About" = "À propos";
@@ -170,3 +169,50 @@
 "Fit Width" = "Ajuster à la largeur";
 "Zoom In" = "Zoom avant";
 "Zoom Out" = "Zoom arrière";
+
+"Let's get started" = "C'est parti";
+"Keep the music going" = "Gardez la musique";
+"Go Premium" = "Passer à Premium";
+"Today" = "Aujourd'hui";
+"Anytime" = "À tout moment";
+"Day 7" = "Jour 7";
+"Full access to uploads, every modality and annotation. No payment needed." = "Accès complet aux imports, à toutes les méthodes de tourne de page et aux annotations. Aucun paiement requis.";
+"Subscribe whenever you like to unlock Performance mode and automatic page turning. It isn't part of the trial." = "Abonnez-vous quand vous le souhaitez pour débloquer le mode Concert et le tourne de page automatique. Ils ne font pas partie de l'essai.";
+"Your free trial ends. Subscribe to keep uploading; the Welcome score stays free forever." = "Votre essai gratuit se termine. Abonnez-vous pour continuer à importer ; la partition de bienvenue reste gratuite pour toujours.";
+"%@ per month. Cancel anytime." = "%@ par mois. Résiliable à tout moment.";
+"Cancel anytime." = "Résiliable à tout moment.";
+"Secured by Apple" = "Sécurisé par Apple";
+"Close" = "Fermer";
+
+"Free trial" = "Essai gratuit";
+"%d days left · ends %@" = "%d jours restants · se termine le %@";
+"Trial ended" = "Essai terminé";
+"1 month" = "1 mois";
+"1 month, %@" = "1 mois, %@";
+
+"Restore" = "Restaurer";
+"Terms" = "Conditions";
+"Privacy" = "Confidentialité";
+
+"Monthly" = "Mensuel";
+"Billed monthly" = "Facturé mensuellement";
+"%d days" = "%d jours";
+"Ends %@" = "Se termine le %@";
+"No card needed" = "Aucune carte requise";
+"Unlock hands-free page turning" = "Débloquez le tourne de page mains libres";
+"Auto Turn is included with Premium" = "Le tourne de page automatique est inclus dans Premium";
+
+"Yearly" = "Annuel";
+"Billed yearly" = "Facturé annuellement";
+"Save %d%%" = "Économisez %d %%";
+"Your free trial needs no card. Subscribe any time." = "Votre essai gratuit ne demande aucune carte. Abonnez-vous quand vous voulez.";
+"Payment is charged to your Apple ID at confirmation. The subscription renews automatically each month or year, depending on your plan, unless cancelled at least 24 hours before the end of the current period. Manage or cancel in Settings › Apple ID › Subscriptions." = "Le paiement est débité de votre identifiant Apple à la confirmation. L'abonnement se renouvelle automatiquement chaque mois ou chaque année, selon votre formule, sauf résiliation au moins 24 heures avant la fin de la période en cours. Gérez ou résiliez dans Réglages › identifiant Apple › Abonnements.";
+
+"Browse Scores" = "Parcourir les partitions";
+"Browse Scores Online" = "Parcourir les partitions en ligne";
+"The Petrucci Music Library: hundreds of thousands of public-domain scores." = "La Petrucci Music Library : des centaines de milliers de partitions du domaine public.";
+"Free-to-print classical scores, carefully typeset and openly licensed." = "Partitions classiques imprimables librement, soigneusement gravées et sous licence ouverte.";
+"The Choral Public Domain Library: choral and vocal music." = "La Choral Public Domain Library : musique chorale et vocale.";
+"PageTurn isn't affiliated with these sites. Only download scores that are in the public domain or that you have the right to use." = "PageTurn n'est affilié à aucun de ces sites. Ne téléchargez que des partitions du domaine public ou dont vous avez le droit d'usage.";
+"Only PDF scores can be added to your Library." = "Seules les partitions PDF peuvent être ajoutées à votre bibliothèque.";
+"Added “%@” to your Library." = "« %@ » ajouté à votre bibliothèque.";

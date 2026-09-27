@@ -15,7 +15,10 @@ final class LibraryViewController: UIViewController {
         config.titleAlignment = .leading
         let button = UIButton(configuration: config, primaryAction: UIAction { [weak self] _ in self?.presentPaywall() })
         button.contentHorizontalAlignment = .leading
-        button.backgroundColor = .secondarySystemBackground
+        button.backgroundColor = Theme.card
+        button.layer.cornerRadius = 14
+        button.layer.borderColor = Theme.hairline.cgColor
+        button.layer.borderWidth = 1
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -23,11 +26,11 @@ final class LibraryViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 16
-        layout.minimumLineSpacing = 20
-        layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        layout.minimumLineSpacing = 24
+        layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 32, right: 16)
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.dragInteractionEnabled = true
@@ -50,7 +53,7 @@ final class LibraryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = Theme.background
         title = "Library".localized
         navigationController?.navigationBar.prefersLargeTitles = true
 
@@ -82,11 +85,11 @@ final class LibraryViewController: UIViewController {
         view.addSubview(collectionView)
         view.addSubview(emptyStateLabel)
         NSLayoutConstraint.activate([
-            statusBanner.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            statusBanner.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            statusBanner.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            statusBanner.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 4),
+            statusBanner.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            statusBanner.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
-            collectionView.topAnchor.constraint(equalTo: statusBanner.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: statusBanner.bottomAnchor, constant: 4),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -106,6 +109,9 @@ final class LibraryViewController: UIViewController {
 
     private func updateStatusBanner() {
         var config = statusBanner.configuration
+        config?.image = UIImage(systemName: SubscriptionStore.shared.isSubscribed ? "checkmark.seal.fill" : "sparkles")
+        config?.imagePadding = 8
+        config?.imageColorTransformer = UIConfigurationColorTransformer { _ in Theme.accent }
         if SubscriptionStore.shared.isSubscribed {
             config?.title = "✓ Premium — unlimited uploads".localized
             config?.baseForegroundColor = .secondaryLabel
@@ -127,6 +133,7 @@ final class LibraryViewController: UIViewController {
             UIAction(title: "Scan with Camera".localized, image: UIImage(systemName: "doc.viewfinder"),
                      attributes: scanSupported ? [] : .disabled) { [weak self] _ in self?.scanTapped() },
             UIAction(title: "Photos to PDF".localized, image: UIImage(systemName: "photo.on.rectangle")) { [weak self] _ in self?.photosTapped() },
+            UIAction(title: "Browse Scores".localized, image: UIImage(systemName: "books.vertical")) { [weak self] _ in self?.browseTapped() },
         ])
     }
 
@@ -136,6 +143,12 @@ final class LibraryViewController: UIViewController {
         picker.delegate = self
         picker.allowsMultipleSelection = true
         present(picker, animated: true)
+    }
+
+    private func browseTapped() {
+        guard EntitlementManager.hasUnlimitedAccess else { return presentPaywall() }
+        let sources = ScoreSourcesViewController(onImported: { [weak self] in self?.refresh() })
+        present(UINavigationController(rootViewController: sources), animated: true)
     }
 
     private func scanTapped() {
@@ -209,7 +222,7 @@ extension LibraryViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LibraryScoreCell.identifier, for: indexPath) as! LibraryScoreCell
         let score = library.scores[indexPath.item]
-        cell.configure(with: score, thumbnail: library.thumbnail(for: score, size: CGSize(width: itemWidth * view.traitCollection.displayScale, height: itemWidth * 1.3 * view.traitCollection.displayScale)))
+        cell.configure(with: score, thumbnail: library.thumbnail(for: score, size: CGSize(width: itemWidth * view.traitCollection.displayScale, height: itemWidth * LibraryScoreCell.thumbnailRatio * view.traitCollection.displayScale)))
         return cell
     }
 
@@ -226,7 +239,7 @@ extension LibraryViewController: UICollectionViewDataSource, UICollectionViewDel
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = itemWidth
-        return CGSize(width: width, height: width * 1.3 + 44)
+        return CGSize(width: width, height: width * LibraryScoreCell.thumbnailRatio + LibraryScoreCell.captionHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -111,7 +111,6 @@
 "Auto Turn is a Premium feature" = "Auto-Umblättern ist eine Premium-Funktion";
 "Subscribe to let PageTurn turn your pages while you perform. Auto Turn is included with Premium." = "Abonniere, damit PageTurn während deines Auftritts für dich umblättert. Auto-Umblättern ist in Premium enthalten.";
 "Performance mode with automatic page turning" = "Auftrittsmodus mit automatischem Umblättern";
-"Payment is charged to your Apple ID at confirmation. The subscription renews monthly unless cancelled at least 24 hours before the end of the current period. Manage or cancel in Settings › Apple ID › Subscriptions." = "Die Zahlung wird bei Bestätigung deiner Apple-ID belastet. Das Abonnement verlängert sich monatlich, sofern du nicht mindestens 24 Stunden vor Ablauf der Laufzeit kündigst. Verwalten oder kündigen unter Einstellungen › Apple-ID › Abonnements.";
 "Terms of Use" = "Nutzungsbedingungen";
 "Privacy Policy" = "Datenschutzerklärung";
 "About" = "Über";
@@ -170,3 +169,50 @@
 "Fit Width" = "Breite einpassen";
 "Zoom In" = "Vergrößern";
 "Zoom Out" = "Verkleinern";
+
+"Let's get started" = "Los geht's";
+"Keep the music going" = "Bleib im Takt";
+"Go Premium" = "Premium holen";
+"Today" = "Heute";
+"Anytime" = "Jederzeit";
+"Day 7" = "Tag 7";
+"Full access to uploads, every modality and annotation. No payment needed." = "Voller Zugriff auf Uploads, alle Umblätter-Methoden und Anmerkungen. Keine Zahlung nötig.";
+"Subscribe whenever you like to unlock Performance mode and automatic page turning. It isn't part of the trial." = "Abonniere, wann du möchtest, um den Auftrittsmodus und automatisches Umblättern freizuschalten. Beides ist nicht Teil der Testphase.";
+"Your free trial ends. Subscribe to keep uploading; the Welcome score stays free forever." = "Deine Testphase endet. Abonniere, um weiter hochzuladen; die Willkommens-Noten bleiben für immer kostenlos.";
+"%@ per month. Cancel anytime." = "%@ pro Monat. Jederzeit kündbar.";
+"Cancel anytime." = "Jederzeit kündbar.";
+"Secured by Apple" = "Gesichert durch Apple";
+"Close" = "Schließen";
+
+"Free trial" = "Kostenlose Testphase";
+"%d days left · ends %@" = "Noch %d Tage · endet am %@";
+"Trial ended" = "Testphase beendet";
+"1 month" = "1 Monat";
+"1 month, %@" = "1 Monat, %@";
+
+"Restore" = "Wiederherstellen";
+"Terms" = "AGB";
+"Privacy" = "Datenschutz";
+
+"Monthly" = "Monatlich";
+"Billed monthly" = "Monatliche Abrechnung";
+"%d days" = "%d Tage";
+"Ends %@" = "Endet am %@";
+"No card needed" = "Keine Karte nötig";
+"Unlock hands-free page turning" = "Schalte freihändiges Umblättern frei";
+"Auto Turn is included with Premium" = "Auto-Umblättern ist in Premium enthalten";
+
+"Yearly" = "Jährlich";
+"Billed yearly" = "Jährliche Abrechnung";
+"Save %d%%" = "%d %% sparen";
+"Your free trial needs no card. Subscribe any time." = "Deine Testphase braucht keine Karte. Abonniere jederzeit.";
+"Payment is charged to your Apple ID at confirmation. The subscription renews automatically each month or year, depending on your plan, unless cancelled at least 24 hours before the end of the current period. Manage or cancel in Settings › Apple ID › Subscriptions." = "Die Zahlung wird bei Bestätigung deiner Apple-ID belastet. Das Abonnement verlängert sich je nach Tarif automatisch jeden Monat oder jedes Jahr, sofern es nicht mindestens 24 Stunden vor Ende des laufenden Zeitraums gekündigt wird. Verwalten oder kündigen unter Einstellungen › Apple-ID › Abonnements.";
+
+"Browse Scores" = "Noten durchsuchen";
+"Browse Scores Online" = "Noten online durchsuchen";
+"The Petrucci Music Library: hundreds of thousands of public-domain scores." = "Die Petrucci Music Library: Hunderttausende gemeinfreie Noten.";
+"Free-to-print classical scores, carefully typeset and openly licensed." = "Frei druckbare klassische Noten, sorgfältig gesetzt und offen lizenziert.";
+"The Choral Public Domain Library: choral and vocal music." = "Die Choral Public Domain Library: Chor- und Vokalmusik.";
+"PageTurn isn't affiliated with these sites. Only download scores that are in the public domain or that you have the right to use." = "PageTurn steht in keiner Verbindung zu diesen Seiten. Lade nur Noten herunter, die gemeinfrei sind oder die du nutzen darfst.";
+"Only PDF scores can be added to your Library." = "Nur PDF-Noten können zur Bibliothek hinzugefügt werden.";
+"Added “%@” to your Library." = "„%@“ zur Bibliothek hinzugefügt.";

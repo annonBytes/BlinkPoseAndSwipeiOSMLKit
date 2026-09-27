@@ -73,6 +73,10 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
         let button = UIButton(configuration: config)
         button.showsMenuAsPrimaryAction = true
         button.accessibilityLabel = "Tools".localized
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.4
+        button.layer.shadowRadius = 8
+        button.layer.shadowOffset = CGSize(width: 0, height: 3)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.widthAnchor.constraint(equalToConstant: 44).isActive = true
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
@@ -309,6 +313,7 @@ final class ScoreViewerViewController: UIViewController, PDFViewDelegate, PDFDoc
     }
 
     private func turnPage(forward: Bool) {
+        Theme.tap()
         guard let document = pdfView.document, let current = pdfView.currentPage else { return }
         let index = document.index(for: current)
 
